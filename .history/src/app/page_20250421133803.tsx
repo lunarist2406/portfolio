@@ -1,0 +1,10 @@
+import Banner from "@/components/Banner/Banner";
+
+export default function Home() {
+  return (
+    <div className="Body-content">
+      <Banner />
+      <div className="my-4 border-t border-amber-500"></div>{" "}
+    </div>
+  );
+}

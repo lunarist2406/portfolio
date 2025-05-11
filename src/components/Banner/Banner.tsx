@@ -1,4 +1,4 @@
-import Carousel from "../ui/carousel";
+import Carousel from "../ui/carouselA";
 import img1 from "../../../public/z6526093298009_8df489b219a4c3c98283a5284eee27b3.jpg";
 const slideData = [
   {
@@ -27,7 +27,7 @@ export default function Banner() {
         <div className="w-1/2 h-full flex items-center justify-center">
           <section className="text-left">
             <h1 className="text-5xl font-bold text-yellow-400 mb-6">
-              Chào bạn, tôi là Mỹ
+              Chào bạn, tôi tên là Mỹ
             </h1>
             <p className="text-xl mb-6 max-w-md">{content}</p>
             <button className="bg-yellow-400 text-black px-6 py-3 rounded hover:bg-yellow-500 transition">
@@ -40,8 +40,6 @@ export default function Banner() {
             <Carousel slides={slideData} />
           </div>
         </div>
-
-        {/* Content bên phải */}
       </div>
     </div>
   );

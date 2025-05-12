@@ -31,8 +31,8 @@ import fpt3 from "../../../public/fpt (3).webp";
 import {
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  // CarouselNext,
+  // CarouselPrevious,
   Carousel,
 } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
@@ -85,17 +85,17 @@ const education: Education[] = [
 ];
 const slideDataFPT = [
   {
-    title: "HCM",
+    title: "FPT University HCM Campus",
     button: "Xem thêm",
     src: fpt3,
   },
   {
-    title: "Sa Đéc",
+    title: "Khuôn Viên FPT",
     button: "Xem thêm",
     src: fpt2,
   },
   {
-    title: "Vũng Tàu",
+    title: "Thư viện FPT",
     button: "Xem thêm",
     src: fpt1,
   },
@@ -139,7 +139,7 @@ const getLanguageIcon = (lang: string): ReactElement => {
 // Hàm ánh xạ icon cho công cụ
 const getToolIcon = (tool: string): ReactElement => {
   const toolLower = tool.toLowerCase();
-  if (toolLower.includes("git ")) return <FaGitAlt className="w-5 h-5 mr-2" />;
+  if (toolLower.includes("git")) return <FaGitAlt className="w-5 h-5 mr-2" />;
   if (toolLower.includes("github"))
     return <FaGithub className="w-5 h-5 mr-2" />;
   if (toolLower.includes("figma")) return <FaFigma className="w-5 h-5 mr-2" />;
@@ -194,8 +194,8 @@ export default function Introduce() {
               }}
               transition={{ type: "spring", stiffness: 100 }}
             >
-              Xin chào! Tôi là sinh viên Đại học FPT TP.HCM, chuyên ngành Kỹ
-              thuật Phần mềm.
+              Xin chào! Tôi là sinh viên Đại học FPT University HCM, chuyên
+              ngành Kỹ thuật Phần mềm.
               <br />
               Tôi định hướng phát triển về lập trình và thiết kế giao diện
               website, với kỹ năng thành thạo ReactJS, Next.js và TypeScript.
@@ -240,101 +240,93 @@ export default function Introduce() {
         </motion.div>
 
         {/* Phần học vấn */}
-        {/* Phần ngôn ngữ lập trình */}
-        <motion.div
-          className="bg-[#2A2A2A] p-6 rounded-lg border border-[#FFD700]"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <h2 className="text-2xl font-semibold text-[#FFD700] mb-4 flex items-center">
-            <FaLanguage className="w-6 h-6 mr-2" /> Ngôn ngữ lập trình
-          </h2>
-          {education.map((edu, index) => (
-            <div key={index}>
-              <motion.ul
-                className="grid grid-cols-1 sm:grid-cols-2 gap-4 pl-5"
-                variants={containerVariants}
-              >
-                {edu.languagePrograms.map((lang, i) => (
-                  <motion.li
-                    key={i}
-                    className="text-lg flex items-center hover:text-[#FFD700] transition-transform duration-300"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {getLanguageIcon(lang)}
-                    {lang}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </div>
-          ))}
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+          <motion.div
+            className="bg-[#2A2A2A] p-6 rounded-lg border border-[#FFD700]"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <h2 className="text-2xl font-semibold text-[#FFD700] mb-4 flex items-center">
+              <FaLanguage className="w-6 h-6 mr-2" /> Ngôn ngữ lập trình
+            </h2>
+            {education.map((edu, index) => (
+              <div key={index}>
+                <motion.ul
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-4 pl-5"
+                  variants={containerVariants}
+                >
+                  {edu.languagePrograms.map((lang, i) => (
+                    <motion.li
+                      key={i}
+                      className="text-lg flex items-center hover:text-[#FFD700] transition-transform duration-300"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {getLanguageIcon(lang)}
+                      {lang}
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            ))}
+          </motion.div>
 
-        {/* Phần kỹ năng */}
-        <motion.div
-          className="bg-[#2A2A2A] p-6 rounded-lg border border-[#FFD700]"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <h2 className="text-2xl font-semibold text-[#FFD700] mb-4 flex items-center">
-            <FaCode className="w-6 h-6 mr-2" /> Kỹ năng
-          </h2>
-          {education.map((edu, index) => (
-            <div key={index}>
-              <motion.ul
-                className="list-none pl-5 space-y-2"
-                variants={containerVariants}
-              >
-                {edu.skills.map((skill, i) => (
-                  <motion.li
-                    key={i}
-                    className="text-lg flex items-center hover:text-[#FFD700] transition-transform duration-300"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <FaCode className="w-5 h-5 mr-2" />
-                    {skill}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Phần công cụ */}
-        <motion.div
-          className="bg-[#2A2A2A] p-6 rounded-lg border border-[#FFD700]"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <h2 className="text-2xl font-semibold text-[#FFD700] mb-4 flex items-center">
-            <FaWrench className="w-6 h-6 mr-2" /> Công cụ
-          </h2>
-          {education.map((edu, index) => (
-            <div key={index}>
-              <motion.ul
-                className="grid grid-cols-2 sm:grid-cols-3 gap-4"
-                variants={containerVariants}
-              >
-                {edu.tools.map((tool, i) => (
-                  <motion.li
-                    key={i}
-                    className="text-lg flex items-center hover:text-[#FFD700] transition-transform duration-300"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {getToolIcon(tool)}
-                    {tool}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </div>
-          ))}
-        </motion.div>
+          {/* Phần kỹ năng */}
+          <motion.div
+            className="bg-[#2A2A2A] p-6 rounded-lg border border-[#FFD700]"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <h2 className="text-2xl font-semibold text-[#FFD700] mb-4 flex items-center">
+              <FaCode className="w-6 h-6 mr-2" /> Kỹ năng
+            </h2>
+            {education.map((edu, index) => (
+              <div key={index}>
+                <motion.ul
+                  className="list-none pl-5 space-y-2"
+                  variants={containerVariants}
+                >
+                  {edu.skills.map((skill, i) => (
+                    <motion.li
+                      key={i}
+                      className="text-lg flex items-center hover:text-[#FFD700] transition-transform duration-300"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <FaCode className="w-5 h-5 mr-2" />
+                      {skill}
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            ))}
+            <h2 className="text-2xl font-semibold text-[#FFD700] mb-4 flex items-center">
+              <FaWrench className="w-6 h-6 mr-2" /> Công cụ
+            </h2>
+            {education.map((edu, index) => (
+              <div key={index}>
+                <motion.ul
+                  className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+                  variants={containerVariants}
+                >
+                  {edu.tools.map((tool, i) => (
+                    <motion.li
+                      key={i}
+                      className="text-lg flex items-center hover:text-[#FFD700] transition-transform duration-300"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {getToolIcon(tool)}
+                      {tool}
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

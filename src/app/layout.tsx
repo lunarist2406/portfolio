@@ -1,13 +1,22 @@
-import { Playfair_Display_SC, Libre_Baskerville } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import Footer from "./footer";
-import Header from "./header";
-// import { Toaster } from "@/components/ui/sonner";
-// import LayoutWrapper from "@/components/LayoutWrapper/LayoutWrapper";
-// import { NextIntlClientProvider } from 'next-intl';
-const playfair = Playfair_Display_SC({
-  subsets: ["vietnamese", "latin-ext"],
-  weight: ["400", "700", "900"],
+import Footer from "../view/Footer";
+import { Metadata } from "next";
+import Header from "@/view/Header";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+export const metadata: Metadata = {
+  title: 'Lý Văn Mỹ',
+  description: 'Created with Lunarist',
+  generator: 'lunarist.dev',
+}
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
 });
 
 export default function RootLayout({
@@ -16,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={playfair.className}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+      <body className="font-body">
         <Header />
         <main>{children}</main>
         <Footer />

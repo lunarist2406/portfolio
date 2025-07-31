@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import Flag from 'react-world-flags'
 
 interface HeaderProps {
   activeSection?: string
@@ -21,6 +22,7 @@ const navigationItems = [
   { id: "introduce", name: "Giới thiệu" },
   { id: "skills", name: "Kỹ năng" },
   { id: "projects", name: "Dự án" },
+  { id: "experences", name: "Kinh nghiệm" },
   { id: "certificates", name: "Chứng chỉ" },
 ]
 
@@ -114,63 +116,59 @@ export default function Header({ activeSection = "home", onNavigate }: HeaderPro
           </nav>
 
           {/* Language Switcher - Desktop */}
-          <div className="hidden md:flex relative min-w-[140px]">
-<DropdownMenu>
-  <DropdownMenuTrigger asChild>
-    <Button
-      variant="outline"
-      className="inline-flex items-center text-white border-yellow-500 hover:bg-yellow-500 hover:text-black transition-colors duration-300 ease-in-out
-              w-full justify-between rounded-md px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 overflow-hidden"
-      style={{ minWidth: 140 }}
-    >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={language}
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.25 }}
-          className="truncate"
-        >
-          {language === "vi" ? "Tiếng Việt" : "English"}
-        </motion.span>
-      </AnimatePresence>
-      <ChevronDown className="ml-2 w-4 h-4 flex-shrink-0 transition-transform duration-300" />
-    </Button>
-  </DropdownMenuTrigger>
+          <div className="hidden md:flex relative min-w-[160px]">
+            <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button
+                variant="outline"
+                className="inline-flex items-center text-white border-yellow-500 hover:bg-yellow-500 hover:text-black transition-colors duration-300 ease-in-out
+                        w-full justify-between rounded-md px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 overflow-hidden"
+                style={{ minWidth: 150 }}
+                >
+                <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                    key={language}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="truncate flex items-center gap-2"
+                    >
+                    <Flag
+                        code={language === "vi" ? "vn" : "us"}
+                        style={{ width: 20, height: 15 }}
+                    />
+                    {language === "vi" ? "Tiếng Việt" : "English"}
+                    </motion.span>
+                </AnimatePresence>
+                <ChevronDown className="ml-2 w-4 h-4 flex-shrink-0 transition-transform duration-300" />
+                </Button>
+            </DropdownMenuTrigger>
 
-  {/* Custom animated dropdown content */}
-  <DropdownMenuContent
-    asChild
-    className="bg-black border-yellow-400 text-white min-w-[140px] right-0 z-[100] overflow-hidden"
-    sideOffset={4}
-  >
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95, y: -4 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95, y: -4 }}
-      transition={{ duration: 0.2 }}
-    >
-      <DropdownMenuItem
-        onClick={() => toggleLanguage("vi")}
-        className={`cursor-pointer ${
-          language === "vi" ? "text-yellow-400 font-semibold" : ""
-        }`}
-      >
-        Tiếng Việt
-      </DropdownMenuItem>
-      <DropdownMenuItem
-        onClick={() => toggleLanguage("en")}
-        className={`cursor-pointer ${
-          language === "en" ? "text-yellow-400 font-semibold" : ""
-        }`}
-      >
-        English
-      </DropdownMenuItem>
-    </motion.div>
-  </DropdownMenuContent>
-</DropdownMenu>
-
+            <DropdownMenuContent
+                className="bg-black border-yellow-400 text-white min-w-[160px] right-0 z-[100] overflow-hidden"
+                sideOffset={4}
+            >
+                <DropdownMenuItem
+                onClick={() => toggleLanguage("vi")}
+                className={`cursor-pointer flex items-center gap-2 ${
+                    language === "vi" ? "text-yellow-400 font-semibold" : ""
+                }`}
+                >
+                <Flag code="vn" style={{ width: 20, height: 15 }} />
+                Tiếng Việt
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                onClick={() => toggleLanguage("en")}
+                className={`cursor-pointer flex items-center gap-2 ${
+                    language === "en" ? "text-yellow-400 font-semibold" : ""
+                }`}
+                >
+                <Flag code="us" style={{ width: 20, height: 15 }} />
+                English
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Mobile Menu Button */}
@@ -232,28 +230,31 @@ export default function Header({ activeSection = "home", onNavigate }: HeaderPro
               ))}
 
               {/* Language Mobile Buttons */}
-              <div className="mt-3 flex gap-2">
+                <div className="mt-3 flex gap-2">
                 <button
-                  onClick={() => toggleLanguage("vi")}
-                  className={`flex-1 text-center py-2 rounded-lg text-sm transition-all duration-300 ${
+                    onClick={() => toggleLanguage("vi")}
+                    className={`flex-1 flex items-center justify-center gap-2 text-center py-2 rounded-lg text-sm transition-all duration-300 ${
                     language === "vi"
-                      ? "text-yellow-400 bg-yellow-400/10"
-                      : "text-white hover:text-yellow-400 hover:bg-yellow-400/5"
-                  }`}
+                        ? "text-yellow-400 bg-yellow-400/10"
+                        : "text-white hover:text-yellow-400 hover:bg-yellow-400/5"
+                    }`}
                 >
-                  Tiếng Việt
+                    <Flag code="vn" style={{ width: "20px", height: "15px" }} />
+                    Tiếng Việt
                 </button>
                 <button
-                  onClick={() => toggleLanguage("en")}
-                  className={`flex-1 text-center py-2 rounded-lg text-sm transition-all duration-300 ${
+                    onClick={() => toggleLanguage("en")}
+                    className={`flex-1 flex items-center justify-center gap-2 text-center py-2 rounded-lg text-sm transition-all duration-300 ${
                     language === "en"
-                      ? "text-yellow-400 bg-yellow-400/10"
-                      : "text-white hover:text-yellow-400 hover:bg-yellow-400/5"
-                  }`}
+                        ? "text-yellow-400 bg-yellow-400/10"
+                        : "text-white hover:text-yellow-400 hover:bg-yellow-400/5"
+                    }`}
                 >
-                  English
+                    <Flag code="us" style={{ width: "20px", height: "15px" }} />
+                    English
                 </button>
-              </div>
+                </div>
+
             </nav>
           </div>
         )}

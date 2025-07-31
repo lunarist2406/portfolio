@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Github, Linkedin, Mail, Download } from "lucide-react"
 import { motion } from "framer-motion"
 const personalInfo = {
-  name: "Lý Văn Mỹ",
+  name: "Mỹ",
   title: "Junior UI/UX Designer & Frontend Developer",
   description: "Kinh nghiệm tạo ra những trải nghiệm số đẹp mắt và thân thiện với người dùng.",
   email: "lyvanmy357@gmail.com",

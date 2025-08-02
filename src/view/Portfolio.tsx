@@ -1,10 +1,35 @@
-import AboutSection from "./AboutSection";
-import HomeView from "./HomeSection";
+"use client"
 
-export default function Portfolio (){
-  return  <div className="Body-content">
-      <div className="my-2 border-t-1 border-amber-500"></div>
-      <HomeView />
-      <AboutSection/>
+import HomeView from "./HomeSection"
+import AboutSection from "./AboutSection"
+import SkillsSection from "./SkillsSection"
+import { useScrollSpy } from "@/hooks/useScrollSpy"
+import Header from "./Header"
+import CertificatesSection from "./CertificationSection"
+
+const sectionIds = ["home", "introduce", "skills", "projects", "experiences", "certificates"]
+
+export default function Portfolio() {
+  const activeSection = useScrollSpy(sectionIds)
+
+  return (
+    <div className="Body-content">
+    <Header activeSection={activeSection ?? undefined} />
+      <section id="home">
+        <HomeView />
+      </section>
+
+      <section id="introduce">
+        <AboutSection />
+      </section>
+
+      <section id="skills">
+        <SkillsSection />
+      </section>
+        <section id="skills">
+        <CertificatesSection />
+      </section>
+      {/* You can add more sections below as needed */}
     </div>
+  )
 }

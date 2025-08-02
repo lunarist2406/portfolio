@@ -26,7 +26,7 @@ const handleSmoothScroll = (elementId: string) => {
 
 export default function HomeView() {
   return (
-    <section id="hero" className="min-h-screen bg-white flex items-center py-20 px-4">
+    <section id="home" className="min-h-screen bg-white flex items-center py-20 px-4">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

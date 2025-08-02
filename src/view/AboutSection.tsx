@@ -26,7 +26,7 @@ export default function AboutSection () {
   ]
 
   return (
-    <section id="about" className="py-5 px-5">
+    <section id="introduce" className="py-5 px-5">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           className="text-center mb-12"

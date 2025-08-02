@@ -21,9 +21,9 @@ const navigationItems = [
   { id: "home", name: "Trang chính" },
   { id: "introduce", name: "Giới thiệu" },
   { id: "skills", name: "Kỹ năng" },
+  { id: "certificates", name: "Chứng chỉ" },
   { id: "projects", name: "Dự án" },
   { id: "experences", name: "Kinh nghiệm" },
-  { id: "certificates", name: "Chứng chỉ" },
 ]
 
 const handleSmoothScroll = (elementId: string) => {
@@ -42,8 +42,9 @@ export default function Header({ activeSection = "home", onNavigate }: HeaderPro
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const storedLang = localStorage.getItem("lang") as "vi" | "en"
-    if (storedLang) setLanguage(storedLang)
+    const lang = (localStorage.getItem("lang") as "vi" | "en") || "vi"
+    setLanguage(lang)
+    localStorage.setItem("lang", lang)
 
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll)
@@ -60,11 +61,7 @@ export default function Header({ activeSection = "home", onNavigate }: HeaderPro
   }
 
   // Animation variants cho text
-  const variants = {
-    enter: { opacity: 0, x: 10 },
-    center: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -10 },
-  }
+
 
   return (
     <header

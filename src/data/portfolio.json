@@ -1,0 +1,136 @@
+{
+  "expertiseCategories": [
+    {
+      "id": "frontend",
+      "icon": "Monitor",
+      "title": "Frontend Development",
+      "desc": "Phát triển giao diện web responsive"
+    },
+    {
+      "id": "uiux",
+      "icon": "Palette",
+      "title": "UI/UX Design",
+      "desc": "Thiết kế trải nghiệm người dùng"
+    },
+    {
+      "id": "backend",
+      "icon": "Server",
+      "title": "Backend Development",
+      "desc": "Xây dựng API và hệ thống backend"
+    }
+
+  ],
+  "expertiseDetails": {
+    "frontend": {
+      "title": "Frontend Development",
+      "experience": "5+ năm kinh nghiệm",
+      "description": "Chuyên sâu về phát triển giao diện web hiện đại với React ecosystem, tối ưu performance và trải nghiệm người dùng. Có kinh nghiệm làm việc với các dự án từ startup đến enterprise scale.",
+      "skills": [
+        { "name": "React.js", "level": 5 },
+        { "name": "Next.js", "level": 5 },
+        { "name": "TypeScript", "level": 4 },
+        { "name": "JavaScript ES6+", "level": 5 },
+        { "name": "Tailwind CSS", "level": 5 },
+        { "name": "Redux/Zustand", "level": 4 },
+        { "name": "React Query", "level": 4 },
+        { "name": "Testing Library", "level": 3 },
+        { "name": "Webpack/Vite", "level": 4 },
+        { "name": "Performance Optimization", "level": 4 }
+      ],
+      "projects": [
+        "Xây dựng 15+ ứng dụng web SPA với React và Next.js",
+        "Tối ưu Core Web Vitals cho 20+ websites, cải thiện 40% performance",
+        "Implement design system được sử dụng cho 5+ dự án lớn",
+        "Migration từ Class Components sang Hooks cho 10+ projects",
+        "Setup CI/CD pipeline và automated testing cho frontend projects",
+        "Phát triển PWA với offline capabilities và push notifications"
+      ],
+      "certificates": [
+        {
+          "title": "Web Design for Everybody: Basics of Web Development & Coding",
+          "image": "/Coursera3N2CEH73MDC2.png",
+          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
+        }
+      ]
+    },
+
+    "backend": {
+      "title": "Backend Development",
+      "experience": "3+ năm kinh nghiệm",
+      "description": "Phát triển API RESTful và GraphQL, thiết kế database scalable, và xây dựng kiến trúc microservices. Có kinh nghiệm với cloud services và DevOps practices.",
+      "skills": [
+        { "name": "Node.js", "level": 4 },
+        { "name": "Express.js", "level": 4 },
+        { "name": "MongoDB", "level": 4 },
+        { "name": "PostgreSQL", "level": 3 },
+        { "name": "Firebase", "level": 4 },
+        { "name": "Docker", "level": 3 },
+        { "name": "AWS Services", "level": 3 },
+        { "name": "GraphQL", "level": 3 },
+        { "name": "Redis", "level": 3 },
+        { "name": "Microservices", "level": 3 }
+      ],
+      "projects": [
+        "Thiết kế và phát triển API cho 10+ ứng dụng mobile và web",
+        "Xây dựng hệ thống real-time với WebSocket và Socket.io",
+        "Implement authentication & authorization với JWT và OAuth",
+        "Optimize database queries, cải thiện performance 50%",
+        "Deploy và maintain applications trên AWS và Vercel",
+        "Xây dựng microservices architecture với Docker containers"
+      ],
+    "certificates": [
+        {
+          "title": "Web Design for Everybody: Basics of Web Development & Coding",
+          "image": "/Coursera3N2CEH73MDC2.png",
+          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
+        }
+      ]
+    },
+
+    "uiux": {
+      "title": "UI/UX Design",
+      "experience": "4+ năm kinh nghiệm",
+      "description": "Tạo ra những trải nghiệm người dùng trực quan và hiệu quả thông qua user research, wireframing và prototyping. Chuyên về design systems và accessibility.",
+      "skills": [
+        { "name": "Figma", "level": 5 },
+        { "name": "Adobe XD", "level": 4 },
+        { "name": "Sketch", "level": 4 },
+        { "name": "Photoshop", "level": 4 },
+        { "name": "User Research", "level": 4 },
+        { "name": "Prototyping", "level": 5 },
+        { "name": "Design Systems", "level": 4 },
+        { "name": "Accessibility", "level": 3 },
+        { "name": "Usability Testing", "level": 4 },
+        { "name": "Information Architecture", "level": 4 }
+      ],
+      "projects": [
+        "Thiết kế UI/UX cho 25+ ứng dụng web và mobile",
+        "Tăng conversion rate 35% thông qua UX optimization",
+        "Tạo design system cho 3 công ty, tiết kiệm 60% thời gian design",
+        "Conduct user research và usability testing cho 15+ projects",
+        "Redesign website corporate, giảm bounce rate 40%",
+        "Implement accessibility guidelines, đạt WCAG 2.1 AA standard"
+      ],
+      "certificates": [
+        {
+          "title": "Fundamentals of UI/UX Design",
+          "image": "/UIUXmicrosoflt.png",
+          "link": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4"
+        }
+      ]
+    }
+  },
+      "certifications":[
+        {
+          "title": "Fundamentals of UI/UX Design",
+          "image": "/UIUXmicrosoflt.png",
+          "link": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4"
+        },
+                {
+          "title": "Web Design for Everybody: Basics of Web Development & Coding",
+          "image": "/Coursera3N2CEH73MDC2.png",
+          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
+        }
+        
+    ]
+}

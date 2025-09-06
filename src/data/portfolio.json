@@ -23,7 +23,7 @@
   "expertiseDetails": {
     "frontend": {
       "title": "Frontend Development",
-      "experience": "5+ năm kinh nghiệm",
+      "experience": "2 năm kinh nghiệm",
       "description": "Chuyên sâu về phát triển giao diện web hiện đại với React ecosystem, tối ưu performance và trải nghiệm người dùng. Có kinh nghiệm làm việc với các dự án từ startup đến enterprise scale.",
       "skills": [
         { "name": "React.js", "level": 5 },
@@ -56,7 +56,7 @@
 
     "backend": {
       "title": "Backend Development",
-      "experience": "3+ năm kinh nghiệm",
+      "experience": "1 năm kinh nghiệm",
       "description": "Phát triển API RESTful và GraphQL, thiết kế database scalable, và xây dựng kiến trúc microservices. Có kinh nghiệm với cloud services và DevOps practices.",
       "skills": [
         { "name": "Node.js", "level": 4 },
@@ -89,7 +89,7 @@
 
     "uiux": {
       "title": "UI/UX Design",
-      "experience": "4+ năm kinh nghiệm",
+      "experience": "1 năm kinh nghiệm",
       "description": "Tạo ra những trải nghiệm người dùng trực quan và hiệu quả thông qua user research, wireframing và prototyping. Chuyên về design systems và accessibility.",
       "skills": [
         { "name": "Figma", "level": 5 },
@@ -120,17 +120,46 @@
       ]
     }
   },
-      "certifications":[
+  "certifications":[
         {
           "title": "Fundamentals of UI/UX Design",
           "image": "/UIUXmicrosoflt.png",
           "link": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4"
         },
-                {
+        {
           "title": "Web Design for Everybody: Basics of Web Development & Coding",
           "image": "/Coursera3N2CEH73MDC2.png",
           "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
+        },
+        {
+          "title": "Project Management Principles and Practices",
+          "image": "/Coursera-PMG.png",
+          "link": "https://coursera.org/share/a77d0e4a8b25681be7b4eb87acd81639"
+        },
+        {
+          "title": "CertNexus Certified Ethical Emerging Technologist",
+          "image": "/Coursera-Ethical-Emerging.png",
+          "link": "https://coursera.org/share/4ae0097e00bde75c28a54ea2df00a0b8"
+        },
+        {
+          "title": "Web Design for Everybody: Basics of Web Development & Coding",
+          "image": "/Coursera-Development-Lifecycle.png",
+          "link": "https://coursera.org/share/2fce878f3ef4e53b1b667da122440eb8"
         }
-        
-    ]
+      ],
+      "projects":[
+
+        {
+          "title": "Web Design for Everybody: Basics of Web Development & Coding",
+          "image": "/project1.png",
+          "link": "https://blood-donation-ass.vercel.app/",
+          "github":"https://github.com/lunarist2406/BloodDonationASS.git",
+          "description": "A comprehensive course covering the basics of web development and coding, including HTML, CSS, and JavaScript.",
+          "role": "Front-End Devloper",
+          "tag" : "Web Development",
+          "technologies": ["HTML", "CSS", "JavaScript, ReactJs , NestJS , MongoDB"],
+          "duration": "4 weeks"
+        }
+      ]
+      
 }

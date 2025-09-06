@@ -111,15 +111,18 @@ export default function SkillsSection() {
                         rel="noopener noreferrer"
                         className="group cursor-pointer border rounded-lg p-3 hover:shadow-md transition-all duration-300 block"
                       >
-                            {cert.image && (
-                                <Image
-                                src="/Coursera3N2CEH73MDC2.png"
-                                alt="Coursera Certificate"
-                                width={500}
-                                height={300}
-                                className="rounded-lg"
-                                />
-                            )}
+                        {cert.image && (
+                        <div className="p-2 border-2 border-gray-300 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
+                            <Image
+                            src={cert.image}
+                            alt={cert.title}
+                            width={300}
+                            height={300}
+                            className="rounded-lg w-full h-auto object-cover"
+                            />
+                        </div>
+                        )}
+
 
                         <div className="mt-3">
                           <h4 className="font-semibold text-sm group-hover:text-primary transition-colors">

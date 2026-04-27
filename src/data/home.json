@@ -1,0 +1,17 @@
+{
+  "name": "Lý Văn Mỹ",
+  "role": "Full-stack Developer",
+  "specialization": "Fresher Front-End Developer",
+  "description": "Kinh nghiệm tạo ra những trải nghiệm số đẹp mắt, thân thiện với người dùng và tối ưu hóa hệ thống Backend.",
+  "email": "lyvanmy357@gmail.com",
+  "github": "https://github.com/lunarist2406",
+  "linkedin": "https://linkedin.com/",
+  "avatar": "https://avatars.githubusercontent.com/u/124806732?s=400&u=7c3459ea0bbd6d0ac77cc82c2615fe337c7a2053&v=4",
+  "cvLink": "/my-cv.pdf",
+  "stats": {
+    "yearsExp": "<1",
+    "projects": "3+",
+    "expLabel": "Years Exp",
+    "projectLabel": "Projects"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "workExperience": [
+    {
+      "id": "ceh-soft-intern",
+      "company": "CEH Soft (Công ty CP Giải pháp Công nghệ CEH)",
+      "website": "https://cehsoft.com/",
+      "previewImage": "https://s.wordpress.com/mshots/v1/https://cehsoft.com?w=800&h=600",
+      "role": "Frontend Developer Intern",
+      "period": "02/2025 - 05/2025",
+      "location": "Hồ Chí Minh",
+      "summary": "Đóng góp vào việc phát triển giao diện người dùng cho các hệ thống tài chính phức tạp và giải pháp tự động hóa công nghiệp.",
+      "projects": [
+        {
+          "name": "BIDV Banking Interface Integration",
+          "techStack": ["Next.js", "Tailwind CSS", "Shadcn UI", "TypeScript"],
+          "responsibilities": [
+            "Trực tiếp phát triển giao diện Dashboard ngân hàng tích hợp hệ thống BIDV, đảm bảo quy trình giao dịch an toàn và mượt mà.",
+            "Xây dựng hệ thống Component UI chuyên nghiệp bằng Next.js, tối ưu hóa khả năng tái sử dụng và tính nhất quán trên toàn bộ nền tảng.",
+            "Chuyển đổi các bản thiết kế phức tạp thành mã nguồn có hiệu suất cao, đạt chuẩn responsive cho mọi thiết bị.",
+            "Tích hợp và xử lý dữ liệu từ RESTful API để hiển thị các báo cáo tài chính thời gian thực."
+          ]
+        },
+        {
+          "name": "SmartGate – Hải Phòng Seaport System Support",
+          "techStack": ["Node.js", "PostgreSQL", "OCR Technology"],
+          "responsibilities": [
+            "Hỗ trợ bảo trì và cải thiện các module trong hệ thống tự động hóa vận hành container tại Cảng Hải Phòng.",
+            "Tham gia tối ưu hóa quy trình xử lý dữ liệu từ camera OCR để tăng cường độ chính xác trong việc kiểm soát gate-in/gate-out."
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Sử dụng thành thạo Next.js trong dự án thực tế quy mô doanh nghiệp.",
+        "Hiểu rõ quy trình phát triển sản phẩm Fintech và tiêu chuẩn bảo mật giao diện.",
+        "Kinh nghiệm làm việc trong môi trường chuyên nghiệp với áp lực tiến độ cao."
+      ]
+    }
+  ]
+}

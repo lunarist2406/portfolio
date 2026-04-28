@@ -7,10 +7,9 @@ import { useScrollSpy } from "@/hooks/useScrollSpy"
 import Header from "./Header"
 import CertificatesSection from "./CertificationSection"
 import ProjectSections from "./ProjectsSections"
-import Footer from "./Footer" // Nhớ import Footer nếu Mỹ muốn hiện ở cuối
+import ExperienceSection from "./ExperienceSection"
 
-// Mảng ID phải khớp hoàn toàn với thuộc tính id của các thẻ section bên dưới
-const sectionIds = ["home", "introduce", "skills", "projects", "certificates"]
+const sectionIds = ["home", "introduce", "skills", "projects", "certificates","experience"]
 
 export default function Portfolio() {
   const activeSection = useScrollSpy(sectionIds)
@@ -39,6 +38,9 @@ export default function Portfolio() {
       {/* Sửa id thành "certificates" */}
       <section id="certificates">
         <CertificatesSection />
+      </section>
+      <section id="experience">
+        <ExperienceSection   />
       </section>
     </div>
   )

@@ -1,0 +1,22 @@
+{
+  "badge": "Learning Path",
+  "title": "Certificates",
+  "subtitle": "Achievements",
+  "description": "Evidence of the training process and constant efforts to master technology.",
+  "verify_btn": "Verify Now",
+  "updating": "Updating",
+  "verified_text": "Verified Credential",
+  "month_prefix": "Month",
+  "categories": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "uiux": "UI/UX Design"
+  },
+  "items": {
+    "cert-frontend-01": "Focuses on the basics of Web development and interface programming.",
+    "cert-backend-01": "Research on software development lifecycle and quality management processes.",
+    "cert-backend-02": "Principles and practices in software project management.",
+    "cert-uiux-01": "In-depth study of user research and User Experience (UX) design.",
+    "cert-uiux-02": "Foundational knowledge of User Interface (UI) and User Experience (UX) design."
+  }
+}

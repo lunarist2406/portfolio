@@ -1,0 +1,42 @@
+{
+  "sectionTitle": "Giới thiệu về tôi",
+  "bio": "Tôi là một Full-stack Developer và UI/UX Designer đam mê tạo ra những sản phẩm số có ý nghĩa và tác động tích cực đến cuộc sống người dùng.",
+  "education": {
+    "title": "Học vấn",
+    "degree": "Cử nhân Kỹ sư Phần mềm",
+    "university": "Đại học FPT Hồ Chí Minh",
+    "duration": "2021 - Hiện tại"
+  },
+  "expertiseCategories": {
+    "frontend": {
+      "title": "Phát triển Frontend",
+      "desc": "Phát triển giao diện web hiện đại và responsive",
+      "experience": "2 năm kinh nghiệm",
+      "projects": [
+        "Phát triển giao diện ngân hàng tích hợp với BIDV sử dụng NextJS và ReactJS",
+        "Xây dựng nền tảng giao dịch nông sản AFF SupplyRoot tối ưu hiển thị",
+        "Thiết kế UI responsive theo tiêu chuẩn WCAG"
+      ]
+    },
+    "backend": {
+      "title": "Phát triển Backend",
+      "desc": "Xây dựng hệ thống API có khả năng mở rộng và kiến trúc microservices",
+      "experience": "1 năm kinh nghiệm",
+      "projects": [
+        "Thiết kế hệ thống quản lý xe điện kiến trúc Microservices trên .NET 9.0",
+        "Xây dựng Backend cho Bike Trade Platform sử dụng NestJS & Prisma",
+        "Hỗ trợ hệ thống tự động hóa SmartGate cho hoạt động ra/vào cảng container tại Cảng biển Hải Phòng sử dụng công nghệ camera OCR."
+      ]
+    },
+    "uiux": {
+      "title": "Thiết kế UI/UX",
+      "desc": "Thiết kế trải nghiệm người dùng tối ưu",
+      "experience": "1 năm kinh nghiệm",
+      "projects": [
+        "Nghiên cứu người dùng và tạo prototype hoàn chỉnh cho sản phẩm số",
+        "Áp dụng đạo đức công nghệ trong thiết kế trải nghiệm người dùng",
+        "Tối ưu hóa khả năng sử dụng qua kiểm thử lặp (Iterative testing)"
+      ]
+    }
+  }
+}

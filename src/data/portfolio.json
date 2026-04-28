@@ -27,12 +27,14 @@
       "skills": [
         { "name": "Next.js", "level": 5 },
         { "name": "ReactJS", "level": 5 },
+        { "name": "React Native", "level": 4 },
         { "name": "Tailwind CSS", "level": 5 },
         { "name": "ShadcnUI", "level": 5 },
         { "name": "JavaScript ES6+", "level": 5 }
+
       ],
       "projects": [
-        "Phát triển giao diện ngân hàng tích hợp với BIDV sử dụng NextJS",
+        "Phát triển giao diện ngân hàng tích hợp với BIDV sử dụng NextJS và ReactJS",
         "Xây dựng nền tảng giao dịch nông sản AFF SupplyRoot tối ưu hiển thị",
         "Thiết kế UI responsive theo tiêu chuẩn WCAG"
       ],
@@ -48,7 +50,7 @@
     },
     "backend": {
       "title": "Backend Development",
-      "experience": "2 năm kinh nghiệm",
+      "experience": "1 năm kinh nghiệm",
       "description": "Kinh nghiệm thực chiến với Node.js, .NET (C#) và kiến trúc Microservices. Có khả năng tối ưu hóa database và quy trình CI/CD.",
       "skills": [
         { "name": "Node.js (NestJS)", "level": 5 },
@@ -60,7 +62,7 @@
       "projects": [
         "Thiết kế hệ thống quản lý xe điện kiến trúc Microservices trên .NET 9.0",
         "Xây dựng Backend cho Bike Trade Platform sử dụng NestJS & Prisma",
-        "Triển khai CI/CD pipeline tự động hóa quy trình test và deploy"
+        "Hỗ trợ hệ thống tự động hóa SmartGate cho hoạt động ra/vào cảng container tại Cảng biển Hải Phòng sử dụng công nghệ camera OCR."
       ],
       "certificates": [
         {
@@ -106,7 +108,7 @@
           "title": "Fundamentals of UI/UX Design",
           "provider": "Microsoft",
           "date": "03/2025",
-          "link": "https://learn.microsoft.com/en-us/credentials/certifications/fundamentals-ui-ux-design",
+          "link": "https://coursera.org/share/657251ea37fe13868b2f195113ce210f",
           "image": ""
         }
       ]
@@ -132,16 +134,6 @@
       "technologies": [".NET 9.0", "ASP.NET Core Web API", "MongoDB", "Microservices", "Docker"],
       "description": "Xây dựng microservices quản lý xe điện, thanh toán. Tích hợp Swagger và container hóa Docker.",
       "teamSize": 3
-    },
-    {
-      "title": "AFF Supply Root",
-      "role": "Frontend Developer",
-      "duration": "09/2025 - 12/2025",
-      "github": "https://github.com/lunarist2406/aff-supply-root",
-      "image": "https://s.wordpress.com/mshots/v1/https://github.com/lunarist2406/aff-supply-root?w=800&h=600",
-      "technologies": ["Next.js", "ShadcnUI", "Tailwind CSS"],
-      "description": "Nền tảng AgriTech kết nối nông dân, ổn định giá nông sản và đảm bảo tính minh bạch.",
-      "tag": "AgriTech"
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "badge": "Showcase",
+    "title": "Dự án",
+    "subtitle": "Tiêu biểu",
+    "description": "Từ ý tưởng đến thực thi, đây là những sản phẩm tâm huyết thể hiện kỹ năng giải quyết vấn đề của mình.",
+    "preview": "Xem demo",
+    "code": "Mã nguồn",
+    "bike_trade_desc": "Thiết kế hệ thống backend module-based, triển khai Auth và RESTful API. Tối ưu hiệu năng và CI/CD.",
+    "ev_app_desc": "Xây dựng microservices quản lý xe điện và thanh toán. Tích hợp Swagger và container hóa Docker.",
+    "roles": {
+      "backend": "Lập trình viên Backend",
+      "frontend": "Lập trình viên Frontend"
+    }
+  }
+}

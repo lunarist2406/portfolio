@@ -1,8 +1,12 @@
 "use client"
 
 import { Github, Linkedin, Mail } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const f = "footer"; // Prefix để truy cập nhanh
+
   return (
     <footer className="relative bg-[#030303] border-t border-white/5 pt-16 pb-8 px-4 overflow-hidden">
       {/* Glow Effect chân trang */}
@@ -18,7 +22,7 @@ export default function Footer() {
               LUNARIST<span className="text-yellow-500">.</span>
             </h4>
             <p className="text-zinc-500 text-sm leading-relaxed max-w-[240px]">
-              Xây dựng trải nghiệm số hiện đại với hiệu năng tối ưu và giao diện tinh tế.
+              {t(`${f}.bio`)}
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a href="https://github.com/lunarist2406" target="_blank" className="p-2 bg-white/5 rounded-lg text-zinc-400 hover:text-yellow-500 hover:bg-yellow-500/10 transition-all">
@@ -33,23 +37,39 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (Dàn trải đều) */}
+          {/* Column 2: Quick Links */}
           <div className="flex flex-col items-center md:items-center">
-            <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">Sitemap</span>
+            <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">
+              {t(`${f}.sitemap`)}
+            </span>
             <nav className="flex flex-col items-center gap-4">
-              <a href="/about-us" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">About Me</a>
-              <a href="/projects" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">Projects</a>
-              <a href="/contact" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">Contact</a>
+              <a href="/about-us" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">
+                {t(`${f}.links.about`)}
+              </a>
+              <a href="/projects" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">
+                {t(`${f}.links.projects`)}
+              </a>
+              <a href="/contact" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">
+                {t(`${f}.links.contact`)}
+              </a>
             </nav>
           </div>
 
           {/* Column 3: Legal/Support */}
           <div className="flex flex-col items-center md:items-end">
-            <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">Legal</span>
+            <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">
+              {t(`${f}.legal`)}
+            </span>
             <nav className="flex flex-col items-center md:items-end gap-4">
-              <a href="/privacy-policy" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">Privacy Policy</a>
-              <a href="/terms-of-service" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">Terms of Service</a>
-              <a href="/community-us" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">Community</a>
+              <a href="/privacy-policy" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">
+                {t(`${f}.links.privacy`)}
+              </a>
+              <a href="/terms-of-service" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">
+                {t(`${f}.links.terms`)}
+              </a>
+              <a href="/community-us" className="text-zinc-400 hover:text-yellow-500 text-sm transition-colors">
+                {t(`${f}.links.community`)}
+              </a>
             </nav>
           </div>
         </div>
@@ -57,13 +77,13 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-yellow-500/60 text-[10px] font-bold uppercase tracking-widest">
-            &copy; {new Date().getFullYear()} LUNARIST — ALL RIGHTS RESERVED
+            &copy; {new Date().getFullYear()} LUNARIST — {t(`${f}.all_rights`)}
           </p>
           
           <div className="flex items-center gap-2">
              <div className="h-1 w-1 rounded-full bg-yellow-500" />
              <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-[0.2em]">
-               Development & Designed by <span className="text-yellow-500">LVSTANTS</span>
+                {t(`${f}.developed_by`)} <span className="text-yellow-500">LVSTANTS</span>
              </span>
           </div>
         </div>

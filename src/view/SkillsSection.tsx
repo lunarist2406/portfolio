@@ -2,17 +2,30 @@
 
 import { Monitor, Server, Palette, Award, ExternalLink, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
-import skillsData from "@/data/portfolio.json";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import skillsData from "@/data/portfolio.json"; 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { ExpertiseDetail } from "@/types/portfolio";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
 export default function SkillsSection() {
+  const { t } = useTranslation();
   const [activeExpertise, setActiveExpertise] = useState("frontend");
-  const expertiseDetails: Record<string, ExpertiseDetail> = skillsData.expertiseDetails;
-  const expertiseCategories = skillsData.expertiseCategories;
+  
+  // 1. Lấy dữ liệu dịch từ namespace 'about'
+  const categories = t('about.expertiseCategories', { returnObjects: true }) as any;
+  
+  // 2. Lấy data kỹ thuật (links, levels) từ portfolio.json
+  const expertiseDetailsData: Record<string, ExpertiseDetail> = skillsData.expertiseDetails;
+  
+  // Tạo danh sách các tab dựa trên ID từ file dịch
+  const expertiseList = Object.keys(categories).map(key => ({
+    id: key,
+    ...categories[key],
+    icon: key === 'frontend' ? 'Monitor' : key === 'backend' ? 'Server' : 'Palette'
+  }));
 
   const iconMap = { Monitor, Server, Palette };
 
@@ -28,27 +41,26 @@ export default function SkillsSection() {
           viewport={{ once: true }}
         >
           <Badge variant="outline" className="mb-4 px-4 py-1 border-yellow-500/30 text-yellow-500 bg-yellow-500/5 uppercase tracking-widest text-[10px] md:text-xs">
-            MY EXPERTISE
+            {t('skills.badge')}
           </Badge>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase">Kỹ năng chuyên môn</h2>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase">{t('skills.title')}</h2>
           <div className="h-1 w-16 md:w-20 bg-yellow-500 mx-auto mb-6" />
           <p className="text-zinc-400 max-w-2xl mx-auto text-sm md:text-lg px-4">
-            Sự kết hợp giữa tư duy logic hệ thống và khả năng sáng tạo giao diện người dùng.
+            {t('skills.subtitle')}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
           
-          {/* Left Column: Selection (Sticky on Desktop, Scroll on Mobile) */}
+          {/* Left Column */}
           <div className="lg:col-span-4 space-y-6">
             <div className="bg-zinc-900/50 rounded-2xl p-4 md:p-6 border border-white/10 backdrop-blur-sm">
               <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-4 md:mb-6 ml-1">
-                Lĩnh vực chuyên tâm
+                {t('skills.expertise_label')}
               </h3>
               
-              {/* Mobile: Horizontal Scroll | Desktop: Vertical Stack */}
               <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide snap-x">
-                {expertiseCategories.map((item) => {
+                {expertiseList.map((item) => {
                   const Icon = iconMap[item.icon as keyof typeof iconMap] || Monitor;
                   const isActive = activeExpertise === item.id;
 
@@ -80,9 +92,8 @@ export default function SkillsSection() {
               </div>
             </div>
 
-            {/* Certificates Card - Hidden on Small Mobile, visible from Tablet up, or keep it but compact */}
             <div className="hidden md:block">
-               <CertificatesList expertiseDetails={expertiseDetails} activeExpertise={activeExpertise} />
+               <CertificatesList expertiseDetails={expertiseDetailsData} activeExpertise={activeExpertise} />
             </div>
           </div>
 
@@ -103,27 +114,27 @@ export default function SkillsSection() {
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 md:mb-8">
                     <div>
                       <h3 className="text-2xl md:text-3xl font-black tracking-tighter mb-1 uppercase text-white">
-                        {expertiseDetails[activeExpertise]?.title}
+                        {categories[activeExpertise]?.title}
                       </h3>
                       <div className="h-1 w-10 md:w-12 bg-yellow-500 rounded-full" />
                     </div>
                     <Badge className="bg-yellow-500 text-black px-3 py-1 md:px-4 md:py-1.5 text-[10px] md:text-xs font-black rounded-lg">
-                      {expertiseDetails[activeExpertise]?.experience.toUpperCase()}
+                      {categories[activeExpertise]?.experience.toUpperCase()}
                     </Badge>
                   </div>
 
                   <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-8 md:mb-10 italic font-medium">
-                    "{expertiseDetails[activeExpertise]?.description}"
+                    "{categories[activeExpertise]?.desc}"
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                     {/* Skills Progress */}
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-5 md:mb-6">
-                        Core Technologies
+                        {t('skills.core_tech')}
                       </h4>
                       <div className="space-y-5 md:space-y-6">
-                        {expertiseDetails[activeExpertise]?.skills?.map((skill, index) => (
+                        {expertiseDetailsData[activeExpertise]?.skills?.map((skill) => (
                           <div key={skill.name} className="group">
                             <div className="flex justify-between text-xs md:text-sm mb-2">
                               <span className="font-bold text-zinc-200 group-hover:text-yellow-500 transition-colors">
@@ -136,7 +147,7 @@ export default function SkillsSection() {
                                 className="bg-yellow-500 h-full rounded-full"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${(skill.level / 5) * 100}%` }}
-                                transition={{ duration: 1, delay: 0.1 }}
+                                transition={{ duration: 1 }}
                               />
                             </div>
                           </div>
@@ -144,27 +155,31 @@ export default function SkillsSection() {
                       </div>
                     </div>
 
-                    {/* Highlights */}
+                    {/* Highlights - ĐÃ TỐI ƯU SÂU ĐA NGÔN NGỮ */}
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-5 md:mb-6">
-                        Dự án & Thành tựu
+                        {t('skills.achievements')}
                       </h4>
                       <div className="space-y-3 md:space-y-4">
-                        {expertiseDetails[activeExpertise]?.projects?.map((project, index) => (
-                          <div key={index} className="relative pl-5 pb-1 border-l border-zinc-800 hover:border-yellow-500 transition-colors group">
+                        {/* Ưu tiên lấy mảng projects từ file i18n (categories[activeExpertise].projects).
+                          Nếu file dịch thiếu, fallback về dữ liệu mặc định ở portfolio.json.
+                        */}
+                        {(categories[activeExpertise]?.projects || expertiseDetailsData[activeExpertise]?.projects)?.map((project: string, index: number) => (
+                          <motion.div 
+                            key={index} 
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="relative pl-5 pb-1 border-l border-zinc-800 hover:border-yellow-500 transition-colors group"
+                          >
                             <div className="absolute -left-[1px] top-1.5 w-0.5 h-3 bg-zinc-700 group-hover:bg-yellow-500" />
-                            <p className="text-sm md:text-[15px] text-zinc-300 font-medium leading-snug group-hover:text-white">
+                            <p className="text-sm md:text-[15px] text-zinc-300 font-medium leading-snug group-hover:text-white transition-colors">
                               {project}
                             </p>
-                          </div>
+                          </motion.div>
                         ))}
                       </div>
                     </div>
-                  </div>
-
-                  {/* Show Certificates on Mobile inside the Detail View */}
-                  <div className="mt-10 md:hidden">
-                    <CertificatesList expertiseDetails={expertiseDetails} activeExpertise={activeExpertise} />
                   </div>
                 </div>
               </motion.div>
@@ -176,14 +191,14 @@ export default function SkillsSection() {
   );
 }
 
-// Sub-component để tái sử dụng
 function CertificatesList({ expertiseDetails, activeExpertise }: any) {
+  const { t } = useTranslation();
   return (
     <Card className="border-white/10 shadow-xl bg-zinc-900/50 overflow-hidden backdrop-blur-sm">
       <div className="bg-white/5 px-4 md:px-6 py-3 md:py-4 border-b border-white/10">
         <CardTitle className="text-[10px] md:text-sm font-bold flex items-center gap-2 text-yellow-500 uppercase tracking-wider">
           <Award className="w-3.5 h-3.5 md:w-4 md:h-4" />
-          Chứng chỉ liên quan
+          {t('skills.certificates_title')}
         </CardTitle>
       </div>
       <CardContent className="p-3 md:p-4 space-y-3">
@@ -217,7 +232,7 @@ function CertificatesList({ expertiseDetails, activeExpertise }: any) {
             </a>
           ))
         ) : (
-          <p className="text-[10px] text-zinc-500 text-center py-4 italic">Đang cập nhật...</p>
+          <p className="text-[10px] text-zinc-500 text-center py-4 italic">{t('skills.no_certificates')}</p>
         )}
       </CardContent>
     </Card>

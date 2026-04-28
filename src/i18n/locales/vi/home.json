@@ -1,0 +1,11 @@
+{
+  "status": "Sẵn sàng cho các dự án mới",
+  "heading_top": "Lập trình",
+  "heading_bottom": "Trải nghiệm",
+  "bio": "Kinh nghiệm tạo ra những trải nghiệm số đẹp mắt, thân thiện với người dùng và tối ưu hóa hệ thống Backend.",
+  "description": "Tôi là <1>{{name}}</1>. {{bio}}",
+  "btn_cv": "Tải CV cá nhân",
+  "btn_projects": "Xem dự án",
+  "stats_exp": "Năm kinh nghiệm",
+  "stats_projects": "Dự án hoàn thành"
+}

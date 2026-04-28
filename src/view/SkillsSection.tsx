@@ -1,6 +1,6 @@
 "use client";
 
-import { Monitor, Server, Palette, Award, ExternalLink, ChevronRight } from "lucide-react";
+import { Monitor, Server, Palette, Award, ExternalLink, ChevronRight, LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -10,24 +10,42 @@ import { ExpertiseDetail } from "@/types/portfolio";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
+// --- Interfaces định nghĩa kiểu dữ liệu ---
+interface CategoryTranslation {
+  title: string;
+  desc: string;
+  experience: string;
+  projects?: string[];
+}
+
+interface ExpertiseItem extends CategoryTranslation {
+  id: string;
+  icon: string;
+}
+
+interface Certificate {
+  title: string;
+  provider: string;
+  link: string;
+  image?: string;
+}
+
 export default function SkillsSection() {
   const { t } = useTranslation();
   const [activeExpertise, setActiveExpertise] = useState("frontend");
   
-  // 1. Lấy dữ liệu dịch từ namespace 'about'
-  const categories = t('about.expertiseCategories', { returnObjects: true }) as any;
+  // 1. Ép kiểu dữ liệu dịch (Xử lý lỗi any tại dòng 18)
+  const categories = t('about.expertiseCategories', { returnObjects: true }) as Record<string, CategoryTranslation>;
   
-  // 2. Lấy data kỹ thuật (links, levels) từ portfolio.json
   const expertiseDetailsData: Record<string, ExpertiseDetail> = skillsData.expertiseDetails;
   
-  // Tạo danh sách các tab dựa trên ID từ file dịch
-  const expertiseList = Object.keys(categories).map(key => ({
+  const expertiseList: ExpertiseItem[] = Object.keys(categories).map(key => ({
     id: key,
     ...categories[key],
     icon: key === 'frontend' ? 'Monitor' : key === 'backend' ? 'Server' : 'Palette'
   }));
 
-  const iconMap = { Monitor, Server, Palette };
+  const iconMap: Record<string, LucideIcon> = { Monitor, Server, Palette };
 
   return (
     <section id="skills" className="py-16 md:py-24 bg-black text-white px-4 overflow-hidden">
@@ -61,7 +79,7 @@ export default function SkillsSection() {
               
               <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide snap-x">
                 {expertiseList.map((item) => {
-                  const Icon = iconMap[item.icon as keyof typeof iconMap] || Monitor;
+                  const Icon = iconMap[item.icon] || Monitor;
                   const isActive = activeExpertise === item.id;
 
                   return (
@@ -123,12 +141,12 @@ export default function SkillsSection() {
                     </Badge>
                   </div>
 
+                  {/* Sửa lỗi dấu ngoặc kép tại dòng 127 */}
                   <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-8 md:mb-10 italic font-medium">
-                    "{categories[activeExpertise]?.desc}"
+                    &ldquo;{categories[activeExpertise]?.desc}&rdquo;
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    {/* Skills Progress */}
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-5 md:mb-6">
                         {t('skills.core_tech')}
@@ -155,15 +173,11 @@ export default function SkillsSection() {
                       </div>
                     </div>
 
-                    {/* Highlights - ĐÃ TỐI ƯU SÂU ĐA NGÔN NGỮ */}
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-5 md:mb-6">
                         {t('skills.achievements')}
                       </h4>
                       <div className="space-y-3 md:space-y-4">
-                        {/* Ưu tiên lấy mảng projects từ file i18n (categories[activeExpertise].projects).
-                          Nếu file dịch thiếu, fallback về dữ liệu mặc định ở portfolio.json.
-                        */}
                         {(categories[activeExpertise]?.projects || expertiseDetailsData[activeExpertise]?.projects)?.map((project: string, index: number) => (
                           <motion.div 
                             key={index} 
@@ -191,8 +205,16 @@ export default function SkillsSection() {
   );
 }
 
-function CertificatesList({ expertiseDetails, activeExpertise }: any) {
+// Sửa lỗi any trong Props và các tham số map (Dòng 194, 206)
+interface CertificatesListProps {
+  expertiseDetails: Record<string, ExpertiseDetail>;
+  activeExpertise: string;
+}
+
+function CertificatesList({ expertiseDetails, activeExpertise }: CertificatesListProps) {
   const { t } = useTranslation();
+  const currentCerts = expertiseDetails[activeExpertise]?.certificates || [];
+
   return (
     <Card className="border-white/10 shadow-xl bg-zinc-900/50 overflow-hidden backdrop-blur-sm">
       <div className="bg-white/5 px-4 md:px-6 py-3 md:py-4 border-b border-white/10">
@@ -202,8 +224,8 @@ function CertificatesList({ expertiseDetails, activeExpertise }: any) {
         </CardTitle>
       </div>
       <CardContent className="p-3 md:p-4 space-y-3">
-        {expertiseDetails[activeExpertise]?.certificates?.length > 0 ? (
-          expertiseDetails[activeExpertise].certificates.map((cert: any, index: number) => (
+        {currentCerts.length > 0 ? (
+          currentCerts.map((cert: Certificate, index: number) => (
             <a
               key={index}
               href={cert.link}

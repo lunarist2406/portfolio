@@ -8,10 +8,10 @@ import {
   CheckCircle2, 
   Code2, 
   ArrowUpRight,
-  Briefcase
+  Briefcase,
+  UserCircle 
 } from "lucide-react"
 import Image from "next/image"
-import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "react-i18next"
 import experienceData from "@/data/experience.json"
 
@@ -51,7 +51,7 @@ export default function ExperienceSection() {
 
         {/* Experience Cards */}
         <div className="space-y-16">
-          {experiences.map((exp, idx) => (
+          {experiences.map((exp) => (
             <motion.div
               key={exp.id}
               initial={{ opacity: 0, y: 30 }}
@@ -62,7 +62,7 @@ export default function ExperienceSection() {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 bg-zinc-900/20 border border-white/5 rounded-[2rem] overflow-hidden backdrop-blur-md hover:border-yellow-500/30 transition-all duration-500 shadow-2xl">
                 
-                {/* Left Side: Branding & Context (4/12) */}
+                {/* Left Side: Branding & Context */}
                 <div className="lg:col-span-4 p-8 lg:p-10 bg-white/[0.02] border-b lg:border-b-0 lg:border-r border-white/5 flex flex-col justify-between">
                   <div>
                     <div className="flex items-start justify-between mb-8">
@@ -72,6 +72,7 @@ export default function ExperienceSection() {
                       <a 
                         href={exp.website} 
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="p-2 rounded-full bg-white/5 text-zinc-500 hover:text-yellow-500 hover:bg-yellow-500/10 transition-all"
                       >
                         <ArrowUpRight className="w-5 h-5" />
@@ -81,6 +82,13 @@ export default function ExperienceSection() {
                     <h3 className="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-yellow-500 transition-colors">
                       {exp.company}
                     </h3>
+
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg border border-white/10 mb-6 transition-all group-hover:border-yellow-500/30 group-hover:bg-yellow-500/5">
+                      <UserCircle className="w-3.5 h-3.5 text-yellow-500" />
+                      <span className="text-[11px] font-bold text-zinc-200 uppercase tracking-wider">
+                        {t(`${expPrefix}.items.${exp.id}.role`)}
+                      </span>
+                    </div>
                     
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center gap-2 text-xs font-bold text-zinc-400 uppercase tracking-widest">
@@ -93,8 +101,8 @@ export default function ExperienceSection() {
                       </div>
                     </div>
 
-                    <p className="text-zinc-500 text-sm leading-relaxed border-l-2 border-yellow-500/20 pl-4 py-1 italic">
-                      {exp.summary}
+                    <p className="text-zinc-500 text-[13px] leading-relaxed border-l-2 border-yellow-500/20 pl-4 py-1 italic">
+                      {t(`${expPrefix}.items.${exp.id}.summary`)}
                     </p>
                   </div>
 
@@ -110,7 +118,7 @@ export default function ExperienceSection() {
                   </div>
                 </div>
 
-                {/* Right Side: Detailed Projects (8/12) */}
+                {/* Right Side: Detailed Projects */}
                 <div className="lg:col-span-8 p-8 lg:p-12 flex flex-col gap-10">
                   <div>
                     <div className="flex items-center gap-3 mb-8">
@@ -121,31 +129,41 @@ export default function ExperienceSection() {
                     </div>
 
                     <div className="space-y-10">
-                      {exp.projects.map((project, pIdx) => (
-                        <div key={pIdx} className="relative pl-6 border-l border-white/10 hover:border-yellow-500/50 transition-colors group/project">
-                          <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-zinc-800 group-hover/project:bg-yellow-500 transition-colors" />
-                          
-                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                            <h4 className="text-xl font-bold text-white tracking-tight">{project.name}</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {project.techStack.map(tech => (
-                                <span key={tech} className="px-2 py-0.5 bg-zinc-800 text-zinc-400 text-[9px] font-bold uppercase rounded border border-white/5 group-hover/project:border-yellow-500/30 transition-colors">
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
+                      {exp.projects.map((project, pIdx) => {
+                        // Xác định projectKey bằng chỉ số nếu JSON không cung cấp id
+                        const projectKey = pIdx;
+                        const resData = t(`${expPrefix}.items.${exp.id}.projects.${projectKey}.responsibilities`, { returnObjects: true });
 
-                          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-                            {project.responsibilities.map((res, rIdx) => (
-                              <li key={rIdx} className="flex items-start gap-3 text-zinc-400 text-[13px] leading-snug">
-                                <CheckCircle2 className="w-4 h-4 text-yellow-500/40 mt-0.5 shrink-0" />
-                                {res}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                        return (
+                          <div key={pIdx} className="relative pl-6 border-l border-white/10 hover:border-yellow-500/50 transition-colors group/project">
+                            <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-zinc-800 group-hover/project:bg-yellow-500 transition-colors" />
+                            
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                              <h4 className="text-xl font-bold text-white tracking-tight">
+                                {t(`${expPrefix}.items.${exp.id}.projects.${projectKey}.name`)}
+                              </h4>
+                              <div className="flex flex-wrap gap-2">
+                                {project.techStack.map(tech => (
+                                  <span key={tech} className="px-2 py-0.5 bg-zinc-800 text-zinc-400 text-[9px] font-bold uppercase rounded border border-white/5 group-hover/project:border-yellow-500/30 transition-colors">
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+
+                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                              {Array.isArray(resData) ? resData.map((res, rIdx) => (
+                                <li key={rIdx} className="flex items-start gap-3 text-zinc-400 text-[13px] leading-snug">
+                                  <CheckCircle2 className="w-4 h-4 text-yellow-500/40 mt-0.5 shrink-0" />
+                                  {res}
+                                </li>
+                              )) : (
+                                <li className="text-zinc-500 text-xs italic">N/A</li>
+                              )}
+                            </ul>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -155,11 +173,14 @@ export default function ExperienceSection() {
                       {t(`${expPrefix}.takeaways_label`)}
                     </span>
                     <div className="flex flex-wrap gap-2">
-                      {exp.keyTakeaways.map(item => (
-                        <span key={item} className="px-3 py-1.5 bg-yellow-500/5 text-yellow-500/80 text-[10px] font-bold rounded-lg border border-yellow-500/10">
-                          # {item}
-                        </span>
-                      ))}
+                      {(() => {
+                        const takeaways = t(`${expPrefix}.items.${exp.id}.takeaways`, { returnObjects: true });
+                        return Array.isArray(takeaways) ? takeaways.map((item, tIdx) => (
+                          <span key={tIdx} className="px-3 py-1.5 bg-yellow-500/5 text-yellow-500/80 text-[10px] font-bold rounded-lg border border-yellow-500/10">
+                            # {item}
+                          </span>
+                        )) : null;
+                      })()}
                     </div>
                   </div>
                 </div>

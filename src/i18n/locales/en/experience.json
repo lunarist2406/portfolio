@@ -4,7 +4,33 @@
   "subtitle": "Experience",
   "description": "The process of accumulating skills through real-world projects at enterprises.",
   "visit_website": "Visit website",
-  "responsibilities_label": "Key Responsibilities",
+  "projects_label": "Featured Projects",
   "takeaways_label": "Key Takeaways",
-  "projects_label": "Featured Projects"
+  "items": {
+    "ceh-soft-intern": {
+      "role": "Developer Intern",
+      "summary": "Contributed to developing UIs for complex financial systems and industrial automation solutions.",
+      "takeaways": [
+        "Proficient in Next.js within real-world enterprise projects.",
+        "Clear understanding of Fintech product cycles and UI security standards.",
+        "Experienced in a professional environment with high-pressure deadlines."
+      ],
+      "projects": {
+        "0": {
+          "name": "BIDV Banking Interface Integration",
+          "responsibilities": [
+            "Supported teammates in developing a secure banking dashboard integrated with BIDV systems.",
+            "Transformed complex designs into high-performance, fully responsive source code."
+          ]
+        },
+        "1": {
+          "name": "SmartGate – Hai Phong Seaport System Support",
+          "responsibilities": [
+            "Maintained and enhanced modules for automated container operations at Hai Phong Port.",
+            "Optimized OCR data processing to improve accuracy for gate control systems."
+          ]
+        }
+      }
+    }
+  }
 }

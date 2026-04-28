@@ -18,9 +18,25 @@ import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "react-i18next"
 
+// 1. Định nghĩa Interface cho dữ liệu Certificate
+interface Certificate {
+  id: string | number;
+  name: string;
+  organization: string;
+  image?: string;
+  url?: string;
+  category: string;
+  issueDate: {
+    month: string | number;
+    year: string | number;
+  };
+}
+
 export default function CertificatesSection() {
   const { t } = useTranslation();
-  const allCertificates = certData.certificates;
+  
+  // 2. Ép kiểu cho dữ liệu từ JSON
+  const allCertificates = certData.certificates as Certificate[];
   
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
@@ -60,7 +76,8 @@ export default function CertificatesSection() {
         <div className="relative px-2 md:px-16">
           <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full relative">
             <CarouselContent className="-ml-4">
-              {allCertificates.map((cert: any, index: number) => (
+              {/* 3. Truyền type vào map */}
+              {allCertificates.map((cert: Certificate, index: number) => (
                 <CarouselItem key={cert.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 py-4">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -71,7 +88,7 @@ export default function CertificatesSection() {
                     <Card className="h-full flex flex-col bg-zinc-900/40 border-white/5 hover:border-yellow-500/30 transition-all duration-500 group backdrop-blur-md overflow-hidden shadow-2xl">
                       <div className="relative aspect-[16/10] overflow-hidden bg-zinc-800">
                         <Image
-                          src={cert.image || `https://s.wordpress.com/mshots/v1/${encodeURIComponent(cert.url)}?w=600`}
+                          src={cert.image || `https://s.wordpress.com/mshots/v1/${encodeURIComponent(cert.url || "")}?w=600`}
                           alt={cert.name}
                           fill
                           className="object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale-[0.5] group-hover:grayscale-0"
@@ -98,7 +115,6 @@ export default function CertificatesSection() {
                         </div>
 
                         <p className="text-zinc-500 text-xs line-clamp-2 mb-4 leading-relaxed">
-                          {/* Lấy mô tả theo ID từ i18n */}
                           {t(`certificates.items.${cert.id}`)}
                         </p>
 

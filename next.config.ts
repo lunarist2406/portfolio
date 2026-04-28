@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/mshots/v1/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'tse2.mm.bing.net', // Domain cụ thể gây lỗi
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.bing.net', // Cho phép tất cả các sub-domain khác của bing.net
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

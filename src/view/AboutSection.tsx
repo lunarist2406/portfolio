@@ -1,13 +1,18 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { GraduationCap, Monitor, Server, Palette, Smartphone, Code2, Briefcase } from "lucide-react"
+import { 
+  GraduationCap, Monitor, Server, Palette, 
+  Smartphone, Code2, Briefcase, LucideIcon 
+} from "lucide-react"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "react-i18next"
-import aboutData from "@/data/about.json" // Giữ lại để lấy các thông tin không dịch (logo, id, icon)
+import Image from "next/image" // Thêm Next Image
+import aboutData from "@/data/about.json"
 
-const IconMap: { [key: string]: any } = {
+// Sửa lỗi 'any' bằng cách định nghĩa Record với LucideIcon
+const IconMap: Record<string, LucideIcon> = {
   Monitor: Monitor,
   Server: Server,
   Palette: Palette,
@@ -35,7 +40,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
         >
           <Badge className="mb-4 px-4 py-1.5 border-yellow-500/20 text-yellow-500 bg-yellow-500/10 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold">
-            {t('about.education.title')} {/* Hoặc tạo key 'introduction' riêng */}
+            {t('about.education.title')}
           </Badge>
           
           <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase tracking-tighter">
@@ -62,7 +67,6 @@ export default function AboutSection() {
           >
             <h3 className="text-xl font-black uppercase tracking-widest mb-8 flex items-center gap-3 text-zinc-100">
               <span className="w-8 h-[2px] bg-yellow-500"></span>
-              {/* Giả sử bạn thêm key này vào file dịch */}
               {t('about.expertiseCategories.frontend.title').includes('Frontend') ? 'My Expertise' : 'Chuyên môn của tôi'}
             </h3>
             
@@ -85,7 +89,6 @@ export default function AboutSection() {
                       <div>
                         <div className="flex items-center gap-3 mb-2">
                           <h4 className="font-bold text-lg group-hover:text-yellow-500 transition-colors">
-                            {/* Truy xuất dynamic key dựa trên item.id (frontend, backend, uiux) */}
                             {t(`about.expertiseCategories.${item.id as 'frontend' | 'backend' | 'uiux'}.title`)}
                           </h4>
                           <span className="text-[10px] px-2 py-0.5 bg-white/5 text-zinc-500 rounded uppercase font-bold tracking-tighter">
@@ -126,13 +129,14 @@ export default function AboutSection() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-5 p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-yellow-500/20">
-                  <div className="relative shrink-0">
-                    <img
+                  <div className="relative shrink-0 w-16 h-16">
+                    <Image
                       src={aboutData.education.logo}
-                      alt="Logo"
-                      className="w-16 h-16 rounded-xl object-contain p-2 bg-white"
+                      alt="University Logo"
+                      fill
+                      className="rounded-xl object-contain p-2 bg-white"
                     />
-                    <div className="absolute -bottom-2 -right-2 bg-yellow-500 p-1.5 rounded-lg shadow-lg">
+                    <div className="absolute -bottom-2 -right-2 bg-yellow-500 p-1.5 rounded-lg shadow-lg z-20">
                       <Briefcase className="w-3 h-3 text-black" />
                     </div>
                   </div>
@@ -145,7 +149,7 @@ export default function AboutSection() {
               </CardContent>
             </Card>
 
-            {/* Skills tóm tắt Card */}
+            {/* Skills Card */}
             <Card className="bg-zinc-900/60 border-white/5 text-white backdrop-blur-md">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-3 text-yellow-500 text-sm uppercase tracking-[0.2em] font-black">
@@ -169,12 +173,25 @@ export default function AboutSection() {
   )
 }
 
-function SkillItem({ icon, label, time }: { icon: any, label: string, time: string }) {
+// Định nghĩa Interface để xóa bỏ 'any'
+interface SkillItemProps {
+  icon: string | React.ReactNode;
+  label: string;
+  time: string;
+}
+
+function SkillItem({ icon, label, time }: SkillItemProps) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-xl bg-black/40 border border-white/5 hover:border-yellow-500/20 hover:bg-zinc-900/80 transition-all duration-300 group">
-      <div className="shrink-0 w-8 h-8 flex items-center justify-center">
+      <div className="shrink-0 w-8 h-8 flex items-center justify-center relative">
         {typeof icon === 'string' ? (
-          <img src={icon} alt={label} className="w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all" />
+          <Image 
+            src={icon} 
+            alt={label} 
+            width={24} 
+            height={24} 
+            className="object-contain grayscale group-hover:grayscale-0 transition-all" 
+          />
         ) : (
           <div className="text-yellow-500 transition-transform group-hover:scale-110">{icon}</div>
         )}

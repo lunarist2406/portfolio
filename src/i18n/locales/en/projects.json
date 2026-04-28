@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "badge": "Showcase",
+    "title": "Featured",
+    "subtitle": "Projects",
+    "description": "From concept to execution, these are the dedicated products that showcase my problem-solving skills.",
+    "preview": "Live Demo",
+    "code": "Source Code",
+    "bike_trade_desc": "Designed a module-based backend system, implemented Auth and RESTful API. Optimized performance and CI/CD.",
+    "ev_app_desc": "Built microservices for electric vehicle management and payments. Integrated Swagger and Docker containerization.",
+    "roles": {
+      "backend": "Backend Developer",
+      "frontend": "Frontend Developer"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "certificates": [
+    {
+      "id": "cert-frontend-01",
+      "category": "frontend",
+      "name": "Web Design for Everybody: Basics of Web Development & Coding",
+      "organization": "University of Michigan",
+      "issueDate": {
+        "month": "09",
+        "year": "2023"
+      },
+      "url": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079",
+      "image": "",
+      "description": "Tập trung vào các kiến thức cơ bản về phát triển Web và lập trình giao diện."
+    },
+    {
+      "id": "cert-backend-01",
+      "category": "backend",
+      "name": "Software Development Lifecycle",
+      "organization": "University of Minnesota",
+      "issueDate": {
+        "month": "01",
+        "year": "2024"
+      },
+      "url": "https://coursera.org/share/2fce878f3ef4e53b1b667da122440eb8",
+      "image": "",
+      "description": "Nghiên cứu về vòng đời phát triển phần mềm và các quy trình quản lý chất lượng."
+    },
+    {
+      "id": "cert-backend-02",
+      "category": "backend",
+      "name": "Project Management Principles and Practices",
+      "organization": "University of California, Irvine",
+      "issueDate": {
+        "month": "06",
+        "year": "2025"
+      },
+      "url": "https://coursera.org/share/a77d0e4a8b25681be7b4eb87acd81639",
+      "image": "",
+      "description": "Các nguyên tắc và thực hành trong quản lý dự án phần mềm."
+    },
+    {
+      "id": "cert-uiux-01",
+      "category": "uiux",
+      "name": "User Experience Research and Design",
+      "organization": "University of Michigan",
+      "issueDate": {
+        "month": "09",
+        "year": "2025"
+      },
+      "url": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4",
+      "image": "",
+      "description": "Chuyên sâu về nghiên cứu người dùng và thiết kế trải nghiệm người dùng (UX)."
+    },
+    {
+      "id": "cert-uiux-02",
+      "category": "uiux",
+      "name": "Fundamentals of UI/UX Design",
+      "organization": "Microsoft",
+      "issueDate": {
+        "month": "03",
+        "year": "2025"
+      },
+      "url": "https://coursera.org/share/657251ea37fe13868b2f195113ce210f",
+      "image": "",
+      "description": "Kiến thức nền tảng về thiết kế giao diện (UI) và trải nghiệm người dùng (UX)."
+    }
+  ]
+}

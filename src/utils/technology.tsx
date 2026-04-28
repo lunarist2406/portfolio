@@ -1,4 +1,5 @@
 import {
+  LucideIcon, // Import type này để định nghĩa kiểu cho Icon
   Code,
   Database,
   Globe,
@@ -21,7 +22,8 @@ import {
   Package,
 } from "lucide-react"
 
-export const technologyIcons: Record<string, any> = {
+// Thay thế 'any' bằng 'LucideIcon'
+export const technologyIcons: Record<string, LucideIcon> = {
     // Frontend
     HTML: Globe,
     CSS: Palette,
@@ -139,7 +141,8 @@ export const technologyIcons: Record<string, any> = {
     PowerShell: Terminal,
 }
 
-export const getTechnologyIcon = (technology: string) => {
+// Thêm kiểu trả về là LucideIcon cho function
+export const getTechnologyIcon = (technology: string): LucideIcon => {
   const normalizedTech = technology.trim()
   return technologyIcons[normalizedTech] || Code // Default icon
 }

@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Bike Trade Platform - Backend",
+    "roleKey": "backend",
+    "duration": "01/2026 - 04/2026",
+    "github": "https://github.com/WDP301-Bike-Trade-Platform/Backend",
+    "link": "https://your-demo-link.com",
+    "image": "https://s.wordpress.com/mshots/v1/https://github.com/WDP301-Bike-Trade-Platform/Backend?w=800&h=600",
+    "technologies": ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "Docker"],
+    "descriptionKey": "bike_trade_desc",
+    "category": "Backend"
+  },
+  {
+    "title": "PRM-APP-Electric-Vehicle",
+    "roleKey": "backend",
+    "duration": "09/2025 - 11/2025",
+    "github": "https://github.com/lunarist2406/prm-app-electric-vehicle",
+    "image": "https://s.wordpress.com/mshots/v1/https://github.com/lunarist2406/prm-app-electric-vehicle?w=800&h=600",
+    "technologies": [".NET 9.0", "ASP.NET Core Web API", "MongoDB", "Docker"],
+    "descriptionKey": "ev_app_desc",
+    "category": "Backend"
+  }
+]

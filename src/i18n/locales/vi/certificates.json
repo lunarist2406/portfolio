@@ -1,0 +1,22 @@
+{
+  "badge": "Lộ trình học tập",
+  "title": "Chứng chỉ",
+  "subtitle": "Thành tựu",
+  "description": "Minh chứng cho quá trình rèn luyện và những nỗ lực không ngừng để làm chủ công nghệ.",
+  "verify_btn": "Xác thực ngay",
+  "updating": "Đang cập nhật",
+  "verified_text": "Đã xác thực",
+  "month_prefix": "Tháng",
+  "categories": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "uiux": "UI/UX Design"
+  },
+  "items": {
+    "cert-frontend-01": "Tập trung vào các kiến thức cơ bản về phát triển Web và lập trình giao diện.",
+    "cert-backend-01": "Nghiên cứu về vòng đời phát triển phần mềm và các quy trình quản lý chất lượng.",
+    "cert-backend-02": "Các nguyên tắc và thực hành trong quản lý dự án phần mềm.",
+    "cert-uiux-01": "Chuyên sâu về nghiên cứu người dùng và thiết kế trải nghiệm người dùng (UX).",
+    "cert-uiux-02": "Kiến thức nền tảng về thiết kế giao diện (UI) và trải nghiệm người dùng (UX)."
+  }
+}

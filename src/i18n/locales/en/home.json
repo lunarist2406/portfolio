@@ -1,0 +1,11 @@
+{
+  "status": "Available for new projects",
+  "heading_top": "Coding",
+  "heading_bottom": "Experiences",
+  "bio": "Experienced in creating beautiful, user-friendly digital experiences and optimizing Backend systems.",
+  "description": "I am <1>{{name}}</1>. {{bio}}",
+  "btn_cv": "Download CV",
+  "btn_projects": "View Projects",
+  "stats_exp": "Years Exp",
+  "stats_projects": "Projects Done"
+}

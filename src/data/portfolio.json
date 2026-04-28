@@ -4,162 +4,136 @@
       "id": "frontend",
       "icon": "Monitor",
       "title": "Frontend Development",
-      "desc": "Phát triển giao diện web responsive"
-    },
-    {
-      "id": "uiux",
-      "icon": "Palette",
-      "title": "UI/UX Design",
-      "desc": "Thiết kế trải nghiệm người dùng"
+      "desc": "Phát triển giao diện web hiện đại và responsive"
     },
     {
       "id": "backend",
       "icon": "Server",
       "title": "Backend Development",
-      "desc": "Xây dựng API và hệ thống backend"
+      "desc": "Xây dựng hệ thống API scalable và kiến trúc microservices"
+    },
+    {
+      "id": "uiux",
+      "icon": "Palette",
+      "title": "UI/UX Design",
+      "desc": "Thiết kế trải nghiệm người dùng tối ưu"
     }
-
   ],
   "expertiseDetails": {
     "frontend": {
       "title": "Frontend Development",
       "experience": "2 năm kinh nghiệm",
-      "description": "Chuyên sâu về phát triển giao diện web hiện đại với React ecosystem, tối ưu performance và trải nghiệm người dùng. Có kinh nghiệm làm việc với các dự án từ startup đến enterprise scale.",
+      "description": "Thành thạo trong việc xây dựng các giao diện người dùng phức tạp, đặc biệt là các hệ thống liên quan đến ngân hàng và nền tảng thương mại.",
       "skills": [
-        { "name": "React.js", "level": 5 },
         { "name": "Next.js", "level": 5 },
-        { "name": "TypeScript", "level": 4 },
-        { "name": "JavaScript ES6+", "level": 5 },
+        { "name": "ReactJS", "level": 5 },
+        { "name": "React Native", "level": 4 },
         { "name": "Tailwind CSS", "level": 5 },
-        { "name": "Redux/Zustand", "level": 4 },
-        { "name": "React Query", "level": 4 },
-        { "name": "Testing Library", "level": 3 },
-        { "name": "Webpack/Vite", "level": 4 },
-        { "name": "Performance Optimization", "level": 4 }
+        { "name": "ShadcnUI", "level": 5 },
+        { "name": "JavaScript ES6+", "level": 5 }
+
       ],
       "projects": [
-        "Xây dựng 15+ ứng dụng web SPA với React và Next.js",
-        "Tối ưu Core Web Vitals cho 20+ websites, cải thiện 40% performance",
-        "Implement design system được sử dụng cho 5+ dự án lớn",
-        "Migration từ Class Components sang Hooks cho 10+ projects",
-        "Setup CI/CD pipeline và automated testing cho frontend projects",
-        "Phát triển PWA với offline capabilities và push notifications"
+        "Phát triển giao diện ngân hàng tích hợp với BIDV sử dụng NextJS và ReactJS",
+        "Xây dựng nền tảng giao dịch nông sản AFF SupplyRoot tối ưu hiển thị",
+        "Thiết kế UI responsive theo tiêu chuẩn WCAG"
       ],
       "certificates": [
         {
           "title": "Web Design for Everybody: Basics of Web Development & Coding",
-          "image": "/Coursera3N2CEH73MDC2.png",
-          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
+          "provider": "University of Michigan",
+          "date": "09/2023",
+          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079",
+          "image": ""
         }
       ]
     },
-
     "backend": {
       "title": "Backend Development",
       "experience": "1 năm kinh nghiệm",
-      "description": "Phát triển API RESTful và GraphQL, thiết kế database scalable, và xây dựng kiến trúc microservices. Có kinh nghiệm với cloud services và DevOps practices.",
+      "description": "Kinh nghiệm thực chiến với Node.js, .NET (C#) và kiến trúc Microservices. Có khả năng tối ưu hóa database và quy trình CI/CD.",
       "skills": [
-        { "name": "Node.js", "level": 4 },
-        { "name": "Express.js", "level": 4 },
-        { "name": "MongoDB", "level": 4 },
-        { "name": "PostgreSQL", "level": 3 },
-        { "name": "Firebase", "level": 4 },
-        { "name": "Docker", "level": 3 },
-        { "name": "AWS Services", "level": 3 },
-        { "name": "GraphQL", "level": 3 },
-        { "name": "Redis", "level": 3 },
-        { "name": "Microservices", "level": 3 }
+        { "name": "Node.js (NestJS)", "level": 5 },
+        { "name": "C# / .NET 9.0", "level": 4 },
+        { "name": "PostgreSQL / MongoDB", "level": 4 },
+        { "name": "Docker", "level": 4 },
+        { "name": "GitHub Actions", "level": 4 }
       ],
       "projects": [
-        "Thiết kế và phát triển API cho 10+ ứng dụng mobile và web",
-        "Xây dựng hệ thống real-time với WebSocket và Socket.io",
-        "Implement authentication & authorization với JWT và OAuth",
-        "Optimize database queries, cải thiện performance 50%",
-        "Deploy và maintain applications trên AWS và Vercel",
-        "Xây dựng microservices architecture với Docker containers"
-      ],
-    "certificates": [
-        {
-          "title": "Web Design for Everybody: Basics of Web Development & Coding",
-          "image": "/Coursera3N2CEH73MDC2.png",
-          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
-        }
-      ]
-    },
-
-    "uiux": {
-      "title": "UI/UX Design",
-      "experience": "1 năm kinh nghiệm",
-      "description": "Tạo ra những trải nghiệm người dùng trực quan và hiệu quả thông qua user research, wireframing và prototyping. Chuyên về design systems và accessibility.",
-      "skills": [
-        { "name": "Figma", "level": 5 },
-        { "name": "Adobe XD", "level": 4 },
-        { "name": "Sketch", "level": 4 },
-        { "name": "Photoshop", "level": 4 },
-        { "name": "User Research", "level": 4 },
-        { "name": "Prototyping", "level": 5 },
-        { "name": "Design Systems", "level": 4 },
-        { "name": "Accessibility", "level": 3 },
-        { "name": "Usability Testing", "level": 4 },
-        { "name": "Information Architecture", "level": 4 }
-      ],
-      "projects": [
-        "Thiết kế UI/UX cho 25+ ứng dụng web và mobile",
-        "Tăng conversion rate 35% thông qua UX optimization",
-        "Tạo design system cho 3 công ty, tiết kiệm 60% thời gian design",
-        "Conduct user research và usability testing cho 15+ projects",
-        "Redesign website corporate, giảm bounce rate 40%",
-        "Implement accessibility guidelines, đạt WCAG 2.1 AA standard"
+        "Thiết kế hệ thống quản lý xe điện kiến trúc Microservices trên .NET 9.0",
+        "Xây dựng Backend cho Bike Trade Platform sử dụng NestJS & Prisma",
+        "Hỗ trợ hệ thống tự động hóa SmartGate cho hoạt động ra/vào cảng container tại Cảng biển Hải Phòng sử dụng công nghệ camera OCR."
       ],
       "certificates": [
         {
+          "title": "Software Development Lifecycle",
+          "provider": "University of Minnesota",
+          "date": "01/2024",
+          "link": "https://coursera.org/share/2fce878f3ef4e53b1b667da122440eb8",
+          "image": ""
+        },
+        {
+          "title": "Project Management Principles and Practices",
+          "provider": "University of California, Irvine",
+          "date": "06/2025",
+          "link": "https://coursera.org/share/a77d0e4a8b25681be7b4eb87acd81639",
+          "image": ""
+        }
+      ]
+    },
+    "uiux": {
+      "title": "UI/UX Design",
+      "experience": "1 năm kinh nghiệm",
+      "description": "Tập trung vào thiết kế hướng người dùng, áp dụng Design Thinking từ giai đoạn concept đến interactive prototype.",
+      "skills": [
+        { "name": "Figma/Prototyping", "level": 5 },
+        { "name": "UX Research", "level": 5 },
+        { "name": "Design Thinking", "level": 5 },
+        { "name": "Information Architecture", "level": 4 }
+      ],
+      "projects": [
+        "Nghiên cứu người dùng và tạo prototype hoàn chỉnh cho sản phẩm số",
+        "Áp dụng đạo đức công nghệ trong thiết kế trải nghiệm người dùng",
+        "Tối ưu hóa khả năng sử dụng qua kiểm thử lặp (Iterative testing)"
+      ],
+      "certificates": [
+        {
+          "title": "User Experience Research and Design",
+          "provider": "University of Michigan",
+          "date": "09/2025",
+          "link": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4",
+          "image": ""
+        },
+        {
           "title": "Fundamentals of UI/UX Design",
-          "image": "/UIUXmicrosoflt.png",
-          "link": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4"
+          "provider": "Microsoft",
+          "date": "03/2025",
+          "link": "https://coursera.org/share/657251ea37fe13868b2f195113ce210f",
+          "image": ""
         }
       ]
     }
   },
-  "certifications":[
-        {
-          "title": "Fundamentals of UI/UX Design",
-          "image": "/UIUXmicrosoflt.png",
-          "link": "https://coursera.org/share/cd39fcab90e4dc88f77c83ae4ba2e8c4"
-        },
-        {
-          "title": "Web Design for Everybody: Basics of Web Development & Coding",
-          "image": "/Coursera3N2CEH73MDC2.png",
-          "link": "https://coursera.org/share/cd5e8e33abcb924bae665f4b49d3d079"
-        },
-        {
-          "title": "Project Management Principles and Practices",
-          "image": "/Coursera-PMG.png",
-          "link": "https://coursera.org/share/a77d0e4a8b25681be7b4eb87acd81639"
-        },
-        {
-          "title": "CertNexus Certified Ethical Emerging Technologist",
-          "image": "/Coursera-Ethical-Emerging.png",
-          "link": "https://coursera.org/share/4ae0097e00bde75c28a54ea2df00a0b8"
-        },
-        {
-          "title": "Web Design for Everybody: Basics of Web Development & Coding",
-          "image": "/Coursera-Development-Lifecycle.png",
-          "link": "https://coursera.org/share/2fce878f3ef4e53b1b667da122440eb8"
-        }
-      ],
-      "projects":[
-
-        {
-          "title": "Web Design for Everybody: Basics of Web Development & Coding",
-          "image": "/project1.png",
-          "link": "https://blood-donation-ass.vercel.app/",
-          "github":"https://github.com/lunarist2406/BloodDonationASS.git",
-          "description": "A comprehensive course covering the basics of web development and coding, including HTML, CSS, and JavaScript.",
-          "role": "Front-End Devloper",
-          "tag" : "Web Development",
-          "technologies": ["HTML", "CSS", "JavaScript, ReactJs , NestJS , MongoDB"],
-          "duration": "4 weeks"
-        }
-      ]
-      
+  "projects": [
+    {
+      "title": "Bike Trade Platform - Backend",
+      "role": "Backend Developer",
+      "duration": "01/2026 - 04/2026",
+      "github": "https://github.com/WDP301-Bike-Trade-Platform/Backend",
+      "image": "https://s.wordpress.com/mshots/v1/https://github.com/WDP301-Bike-Trade-Platform/Backend?w=800&h=600",
+      "technologies": ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "Docker", "GitHub Actions"],
+      "description": "Thiết kế hệ thống backend module-based, triển khai Auth và RESTful API. Tối ưu hiệu năng và CI/CD.",
+      "teamSize": 4
+    },
+    {
+      "title": "PRM-APP-Electric-Vehicle",
+      "role": "Backend Developer (C#)",
+      "duration": "09/2025 - 11/2025",
+      "github": "https://github.com/lunarist2406/prm-app-electric-vehicle",
+      "image": "https://s.wordpress.com/mshots/v1/https://github.com/lunarist2406/prm-app-electric-vehicle?w=800&h=600",
+      "technologies": [".NET 9.0", "ASP.NET Core Web API", "MongoDB", "Microservices", "Docker"],
+      "description": "Xây dựng microservices quản lý xe điện, thanh toán. Tích hợp Swagger và container hóa Docker.",
+      "teamSize": 3
+    }
+  ]
 }

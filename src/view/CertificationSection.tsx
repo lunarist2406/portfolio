@@ -1,117 +1,165 @@
 "use client"
 
+import * as React from "react"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Award, Calendar, ShieldCheck } from "lucide-react"
 import Image from "next/image"
-import Certifications from "@/data/portfolio.json"
-import { truncateText } from '../utils/truncateText';
+import certData from "@/data/certificates.json" 
 import { motion } from "framer-motion"
+import { Badge } from "@/components/ui/badge"
+import { useTranslation } from "react-i18next"
 
-const certifications = Certifications.certifications || []
+// 1. Định nghĩa Interface cho dữ liệu Certificate
+interface Certificate {
+  id: string | number;
+  name: string;
+  organization: string;
+  image?: string;
+  url?: string;
+  category: string;
+  issueDate: {
+    month: string | number;
+    year: string | number;
+  };
+}
 
 export default function CertificatesSection() {
+  const { t } = useTranslation();
+  
+  // 2. Ép kiểu cho dữ liệu từ JSON
+  const allCertificates = certData.certificates as Certificate[];
+  
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) return
+    setCurrent(api.selectedScrollSnap())
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
   return (
-    <section id="certificates" className="py-12 px-4">
+    <section id="certificates" className="py-24 bg-[#050505] px-4 relative overflow-visible">
+      {/* Glow effects */}
+      <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-yellow-500/10 blur-[100px] rounded-full pointer-events-none" />
+      
       <div className="container mx-auto max-w-6xl">
         <motion.div
-          className="text-center mb-8"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">🎓 Chứng chỉ & Giấy chứng nhận</h2>
-          <p className="text-sm text-muted-foreground">Những thành tựu mình đã đạt được qua các khóa học chuyên môn</p>
+          <Badge className="mb-4 px-4 py-1.5 border-yellow-500/20 text-yellow-500 bg-yellow-500/10 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold">
+            {t("certificates.badge")}
+          </Badge>
+          <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-white">
+            {t("certificates.title")} <span className="text-yellow-500">&</span> {t("certificates.subtitle")}
+          </h2>
+          <p className="text-zinc-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+            {t("certificates.description")}
+          </p>
         </motion.div>
 
-        {/* Fixed Carousel Container with Proper Overflow */}
-        <div className="relative">
-          {/* Carousel Wrapper with Padding for Navigation */}
-          <div className="mx-12">
-            <Carousel
-              className="w-full"
-              opts={{
-                align: "start",
-                loop: true,
-                containScroll: "trimSnaps",
-              }}
-            >
-              {/* Properly Contained Content */}
-              <CarouselContent className="ml-0">
-                {certifications.map((cert, index) => (
-                  <CarouselItem key={index} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                    <div className="h-full p-1">
-                      <motion.div
-                        className="h-full"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
-                        viewport={{ once: true }}
-                      >
-                        <Card className="h-full flex flex-col hover:shadow-md transition-all duration-300 hover:scale-[1.02] bg-background border group">
-                          <CardHeader className="flex-1 flex flex-col items-center justify-center p-4">
-                            {/* Certificate Image */}
-                        <div className="mb-3 flex items-center justify-center overflow-hidden">
-                          <Image
-                            src={cert.image || "/placeholder.svg"}
-                            alt={cert.title}
-                            width={200}
-                            height={200}
-                            className="max-w-[200px] max-h-[200px] object-contain rounded-md"
-                          />
+        <div className="relative px-2 md:px-16">
+          <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full relative">
+            <CarouselContent className="-ml-4">
+              {/* 3. Truyền type vào map */}
+              {allCertificates.map((cert: Certificate, index: number) => (
+                <CarouselItem key={cert.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 py-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card className="h-full flex flex-col bg-zinc-900/40 border-white/5 hover:border-yellow-500/30 transition-all duration-500 group backdrop-blur-md overflow-hidden shadow-2xl">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-800">
+                        <Image
+                          src={cert.image || `https://s.wordpress.com/mshots/v1/${encodeURIComponent(cert.url || "")}?w=600`}
+                          alt={cert.name}
+                          fill
+                          className="object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale-[0.5] group-hover:grayscale-0"
+                          unoptimized
+                        />
+                        <div className="absolute top-3 right-3">
+                           <span className="px-2 py-1 bg-white/10 backdrop-blur-md text-white text-[8px] font-bold uppercase rounded border border-white/10">
+                            {t(`certificates.categories.${cert.category}`)}
+                          </span>
+                        </div>
+                        <div className="absolute bottom-3 left-3">
+                          <span className="px-2 py-1 bg-yellow-500 text-black text-[10px] font-black uppercase rounded">
+                            {cert.organization}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="p-6 flex flex-col flex-1">
+                        <div className="flex items-start justify-between gap-4 mb-3">
+                          <Award className="w-5 h-5 text-yellow-500 shrink-0" />
+                          <CardTitle className="text-lg font-bold text-zinc-100 leading-tight line-clamp-2 group-hover:text-yellow-500 transition-colors">
+                            {cert.name}
+                          </CardTitle>
                         </div>
 
-                            {/* Certificate Title */}
-                            <CardTitle className="text-sm text-center leading-tight min-h-[2.5rem] flex items-center group-hover:text-primary transition-colors">
-                              {truncateText(cert.title, 40)}
-                            </CardTitle>
+                        <p className="text-zinc-500 text-xs line-clamp-2 mb-4 leading-relaxed">
+                          {t(`certificates.items.${cert.id}`)}
+                        </p>
 
-                            {/* Issuer */}
-                            <p className="text-xs text-muted-foreground text-center mt-2">
-                              {truncateText(cert.issuer, 25)}
-                            </p>
-                          </CardHeader>
+                        <div className="space-y-3 mt-auto">
+                          <div className="flex items-center gap-3 text-zinc-500">
+                            <Calendar className="w-3.5 h-3.5 text-zinc-600" />
+                            <span className="text-xs font-medium uppercase tracking-wider">
+                              {t("certificates.month_prefix")} {cert.issueDate.month}/{cert.issueDate.year}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-3 text-zinc-500">
+                            <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
+                            <span className="text-xs font-medium">{t("certificates.verified_text")}</span>
+                          </div>
 
-                          {/* Action Button */}
-                          <CardContent className="p-3 pt-0">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="w-full gap-2 text-xs hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
-                              onClick={() => window.open(cert.link, "_blank")}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              Xem chứng chỉ
-                            </Button>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-
-              {/* Navigation Buttons - Outside the carousel content */}
-              <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-background border shadow-md hover:bg-muted" />
-              <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-background border shadow-md hover:bg-muted" />
-            </Carousel>
-          </div>
+                          <Button
+                            onClick={() => cert.url && window.open(cert.url, "_blank")}
+                            className="w-full mt-4 bg-zinc-800/50 hover:bg-yellow-500 text-white hover:text-black border border-white/5 font-bold text-[10px] uppercase tracking-[0.2em] h-11 transition-all"
+                          >
+                            {cert.url ? t("certificates.verify_btn") : t("certificates.updating")}
+                            {cert.url && <ExternalLink className="ml-2 w-3.5 h-3.5" />}
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            
+            <div className="flex justify-center md:block">
+               <CarouselPrevious className="static md:absolute translate-y-0 md:-left-12 bg-zinc-900/80 border-white/10 text-white hover:bg-yellow-500 hover:text-black transition-all shadow-xl" />
+               <CarouselNext className="static md:absolute translate-y-0 md:-right-12 bg-zinc-900/80 border-white/10 text-white hover:bg-yellow-500 hover:text-black transition-all shadow-xl ml-4 md:ml-0" />
+            </div>
+          </Carousel>
         </div>
 
-        {/* Progress Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: Math.ceil(certifications.length / 4) }).map((_, index) => (
-            <div
-              key={index}
-              className="w-2 h-2 rounded-full bg-muted-foreground/30 hover:bg-muted-foreground/60 transition-colors cursor-pointer"
+        <div className="flex justify-center gap-3 mt-16">
+          {allCertificates.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                current === i ? "w-12 bg-yellow-500" : "w-4 bg-zinc-800 hover:bg-zinc-700"
+              }`}
             />
           ))}
         </div>
@@ -119,4 +167,3 @@ export default function CertificatesSection() {
     </section>
   )
 }
-

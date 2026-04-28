@@ -5,6 +5,7 @@
 
 export interface Certificate {
   title: string;
+  provider: string; // Thêm dòng này để hết lỗi
   link: string;
   image?: string;
 }

@@ -1,0 +1,49 @@
+{
+    "nav": {
+    "home": "Trang chính",
+    "about": "Giới thiệu",
+    "skills": "Kỹ năng",
+    "projects": "Dự án",
+    "certificates": "Chứng chỉ",
+    "menu_title": "Menu điều hướng",
+    "language": "Ngôn ngữ"
+  },
+  "home": {
+    "status": "Sẵn sàng cho các dự án mới",
+    "heading_top": "Lập trình",
+    "heading_bottom": "Trải nghiệm",
+    "bio": "Kinh nghiệm tạo ra những trải nghiệm số đẹp mắt, thân thiện với người dùng và tối ưu hóa hệ thống Backend.",
+    "description": "Tôi là <1>{{name}}</1>. {{bio}}",
+    "btn_cv": "Tải CV cá nhân",
+    "btn_projects": "Xem dự án",
+    "stats_exp": "Năm kinh nghiệm",
+    "stats_projects": "Dự án hoàn thành"
+  },
+  "about": {
+    "sectionTitle": "Giới thiệu về tôi",
+    "bio": "Tôi là một Full-stack Developer và UI/UX Designer đam mê tạo ra những sản phẩm số có ý nghĩa và tác động tích cực đến cuộc sống người dùng.",
+    "education": {
+      "title": "Học vấn",
+      "degree": "Cử nhân Kỹ sư Phần mềm",
+      "university": "Đại học FPT Hồ Chí Minh",
+      "duration": "2021 - Hiện tại"
+    },
+    "expertiseCategories": {
+      "frontend": {
+        "title": "Phát triển Frontend",
+        "desc": "Phát triển giao diện web hiện đại và responsive",
+        "experience": "1.5 năm kinh nghiệm"
+      },
+      "backend": {
+        "title": "Phát triển Backend",
+        "desc": "Xây dựng hệ thống API có khả năng mở rộng và kiến trúc microservices",
+        "experience": "2 năm kinh nghiệm"
+      },
+      "uiux": {
+        "title": "Thiết kế UI/UX",
+        "desc": "Thiết kế trải nghiệm người dùng tối ưu",
+        "experience": "6 tháng kinh nghiệm"
+      }
+    }
+  }
+}

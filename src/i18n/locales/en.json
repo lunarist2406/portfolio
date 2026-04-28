@@ -1,0 +1,49 @@
+{
+"nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "certificates": "Certificates",
+    "menu_title": "Navigation Menu",
+    "language": "Language"
+  },
+  "home": {
+    "status": "Available for new projects",
+    "heading_top": "Coding",
+    "heading_bottom": "Experiences",
+    "bio": "Experienced in creating beautiful, user-friendly digital experiences and optimizing Backend systems.",
+    "description": "I am <1>{{name}}</1>. {{bio}}",
+    "btn_cv": "Download CV",
+    "btn_projects": "View Projects",
+    "stats_exp": "Years Exp",
+    "stats_projects": "Projects Done"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "bio": "I am a Full-stack Developer and UI/UX Designer passionate about creating meaningful digital products that have a positive impact on users' lives.",
+    "education": {
+      "title": "Education",
+      "degree": "Bachelor of Software Engineering",
+      "university": "FPT University Ho Chi Minh City",
+      "duration": "2021 - Present"
+    },
+    "expertiseCategories": {
+      "frontend": {
+        "title": "Frontend Development",
+        "desc": "Developing modern, responsive web interfaces",
+        "experience": "1.5 years of experience"
+      },
+      "backend": {
+        "title": "Backend Development",
+        "desc": "Building scalable API systems and microservices architecture",
+        "experience": "2 years of experience"
+      },
+      "uiux": {
+        "title": "UI/UX Design",
+        "desc": "Designing optimized user experiences",
+        "experience": "6 months of experience"
+      }
+    }
+  }
+}

@@ -18,21 +18,43 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 });
 
-// Link mShots tự động chụp màn hình website của bạn
+// WordPress mShots: Tự động chụp màn hình website để làm ảnh preview
 const shareImage = "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fportfolio-lvstants.vercel.app%2F?w=1200&h=630";
 
 export const metadata: Metadata = {
+  // 1. Tối ưu tiêu đề chuẩn SEO cho Software Engineer
   title: {
     default: "Lý Văn Mỹ | Full-stack Developer & Software Engineer",
     template: "%s | Lý Văn Mỹ"
   },
-  description: "Lý Văn Mỹ - Chuyên gia phát triển Full-stack chuyên về MERN Stack, Next.js và hệ thống .NET. Khám phá giải pháp công nghệ tối ưu.",
-  generator: 'lunarist.dev',
-  keywords: ["Lý Văn Mỹ", "Lý Văn Mỹ Portfolio", "Fullstack Developer", "Software Engineer Vietnam", "MERN Stack", "Next.js"],
-  authors: [{ name: "Lý Văn Mỹ", url: "https://portfolio-lvstants.vercel.app" }],
-  metadataBase: new URL('https://portfolio-lvstants.vercel.app'),
-  alternates: { canonical: '/' },
   
+  // 2. Mô tả chứa từ khóa mục tiêu: MERN, Next.js, .NET
+  description: "Lý Văn Mỹ (Lunartist) - Chuyên gia phát triển Full-stack với kinh nghiệm về MERN Stack, Next.js và hệ thống .NET. Khám phá các dự án phần mềm và giải pháp công nghệ tối ưu.",
+  
+  generator: 'lunarist.dev',
+  
+  // 3. Bộ từ khóa mở rộng để tăng khả năng xuất hiện trên Google
+  keywords: [
+    "Lý Văn Mỹ", 
+    "Lý Văn Mỹ Portfolio", 
+    "Lunartist", 
+    "Fullstack Developer Vietnam", 
+    "Software Engineer", 
+    "MERN Stack Developer", 
+    "Next.js Developer",
+    "Node.js Developer",
+    "Lập trình viên Fullstack"
+  ],
+  
+  authors: [{ name: "Lý Văn Mỹ", url: "https://portfolio-lvstants.vercel.app" }],
+  
+  // 4. URL gốc để tránh lỗi trùng lặp nội dung (Canonical URL)
+  metadataBase: new URL('https://portfolio-lvstants.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+
+  // 5. Điều hướng Robot tìm kiếm
   robots: {
     index: true,
     follow: true,
@@ -40,9 +62,11 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
 
+  // 6. Hiển thị trên các mạng xã hội (Open Graph)
   openGraph: {
     title: "Lý Văn Mỹ | Portfolio - Full-stack Developer",
     description: "Khám phá các dự án công nghệ và kỹ năng lập trình Full-stack chuyên nghiệp của Lý Văn Mỹ.",
@@ -55,16 +79,25 @@ export const metadata: Metadata = {
         url: shareImage,
         width: 1200,
         height: 630,
-        alt: "Lý Văn Mỹ | Portfolio Preview",
+        alt: "Lý Văn Mỹ | Full-stack Developer Portfolio Preview",
       },
     ],
   },
 
+  // 7. Tối ưu hiển thị trên X (Twitter), Telegram, Slack
   twitter: {
     card: "summary_large_image",
-    title: "Lý Văn Mỹ | Full-stack Developer",
+    title: "Lý Văn Mỹ | Full-stack Developer & Software Engineer",
     description: "Chuyên môn về MERN Stack, Next.js và .NET Development.",
     images: [shareImage],
+    creator: "@lunarist", // Thay bằng username X của bạn nếu có
+  },
+
+  // 8. Tối ưu cho ứng dụng di động và trình duyệt
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Lý Văn Mỹ Portfolio",
   },
 };
 

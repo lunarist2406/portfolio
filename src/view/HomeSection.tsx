@@ -1,11 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react"; // Thêm useEffect và useState
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Github, Linkedin, Mail, Download, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation, Trans } from "react-i18next";
-// Giữ lại để lấy các thông tin cố định như Link, Avatar, Email
 import homeData from "@/data/home.json";
 
 const handleSmoothScroll = (elementId: string) => {
@@ -26,6 +26,19 @@ const handleSmoothScroll = (elementId: string) => {
 
 export default function HomeView() {
   const { t } = useTranslation();
+  
+  // KIỂM SOÁT HYDRATION
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Nếu chưa mounted (đang ở server), render một bản "xương cá" (skeleton) 
+  // hoặc bản mặc định khớp với server để tránh lỗi mismatch.
+  if (!mounted) {
+    return <div className="min-h-screen bg-black" />; 
+  }
 
   return (
     <section id="home" className="min-h-screen bg-black flex items-center py-24 px-4 overflow-hidden relative">
@@ -79,7 +92,7 @@ export default function HomeView() {
                   i18nKey="home.description" 
                   values={{ 
                     name: homeData.name, 
-                    bio: t('home.bio') // Truyền nội dung bio đã dịch vào đây
+                    bio: t('home.bio') 
                   }}
                 >
                   Tôi là <span className="text-white font-bold">{homeData.name}</span>. {t('home.bio')}
@@ -113,17 +126,17 @@ export default function HomeView() {
               </Button>
             </motion.div>
 
-            {/* Social Links - Lấy từ homeData cố định */}
+            {/* Social Links */}
             <motion.div
               className="flex items-center gap-6 pt-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <a href={homeData.github} target="_blank" className="text-zinc-500 hover:text-yellow-500 transition-colors">
+              <a href={homeData.github} target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-yellow-500 transition-colors">
                 <Github className="w-6 h-6" />
               </a>
-              <a href={homeData.linkedin} target="_blank" className="text-zinc-500 hover:text-yellow-500 transition-colors">
+              <a href={homeData.linkedin} target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-yellow-500 transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
               <a href={`mailto:${homeData.email}`} className="text-zinc-500 hover:text-yellow-500 transition-colors">
@@ -145,12 +158,18 @@ export default function HomeView() {
             <div className="relative p-4">
               <div className="w-72 h-72 md:w-96 md:h-96 relative z-10">
                 <Avatar className="w-full h-full border-2 border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
-                  <AvatarImage src={homeData.avatar} alt={homeData.name} className="object-cover" />
+                  <AvatarImage 
+                    src={homeData.avatar} 
+                    alt={homeData.name} 
+                    className="object-cover"
+                    // Fix lỗi Image missing sizes
+                    sizes="(max-width: 768px) 288px, 384px" 
+                  />
                   <AvatarFallback className="bg-zinc-900 text-white">MY</AvatarFallback>
                 </Avatar>
               </div>
 
-              {/* Years Exp Badge */}
+              {/* Badges */}
               <motion.div 
                 className="absolute -top-4 -right-4 bg-zinc-900 border border-white/10 p-4 rounded-2xl shadow-xl z-20"
                 animate={{ y: [0, -10, 0] }}
@@ -164,7 +183,6 @@ export default function HomeView() {
                 </div>
               </motion.div>
 
-              {/* Projects Badge */}
               <motion.div 
                 className="absolute -bottom-6 -left-6 bg-zinc-900 border border-white/10 p-4 rounded-2xl shadow-xl z-20"
                 animate={{ y: [0, 10, 0] }}

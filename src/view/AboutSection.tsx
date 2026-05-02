@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react" // 1. Thêm hooks để xử lý Hydration
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { 
   GraduationCap, Monitor, Server, Palette, 
@@ -8,10 +9,9 @@ import {
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "react-i18next"
-import Image from "next/image" // Thêm Next Image
+import Image from "next/image"
 import aboutData from "@/data/about.json"
 
-// Sửa lỗi 'any' bằng cách định nghĩa Record với LucideIcon
 const IconMap: Record<string, LucideIcon> = {
   Monitor: Monitor,
   Server: Server,
@@ -21,6 +21,18 @@ const IconMap: Record<string, LucideIcon> = {
 
 export default function AboutSection() {
   const { t } = useTranslation();
+  
+  // 2. State kiểm soát mount để tránh lỗi Hydration (Server-Client mismatch)
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Nếu chưa mounted, render bản skeleton tĩnh đơn giản để khớp với Server
+  if (!mounted) {
+    return <section id="introduce" className="py-24 bg-[#050505]" />;
+  }
 
   return (
     <section id="introduce" className="py-24 px-4 bg-[#050505] text-white relative overflow-hidden">
@@ -134,6 +146,8 @@ export default function AboutSection() {
                       src={aboutData.education.logo}
                       alt="University Logo"
                       fill
+                      // 3. Thêm sizes để sửa lỗi warning performance
+                      sizes="64px"
                       className="rounded-xl object-contain p-2 bg-white"
                     />
                     <div className="absolute -bottom-2 -right-2 bg-yellow-500 p-1.5 rounded-lg shadow-lg z-20">
@@ -173,7 +187,6 @@ export default function AboutSection() {
   )
 }
 
-// Định nghĩa Interface để xóa bỏ 'any'
 interface SkillItemProps {
   icon: string | React.ReactNode;
   label: string;

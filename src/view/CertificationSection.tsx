@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,17 +8,16 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "@/components/ui/carousel"
-import { Card, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Award, Calendar, ShieldCheck } from "lucide-react"
-import Image from "next/image"
-import certData from "@/data/certificates.json" 
-import { motion } from "framer-motion"
-import { Badge } from "@/components/ui/badge"
-import { useTranslation } from "react-i18next"
+} from "@/components/ui/carousel";
+import { Card, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Award, Calendar, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import certData from "@/data/certificates.json"; 
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
-// 1. Định nghĩa Interface cho dữ liệu Certificate
 interface Certificate {
   id: string | number;
   name: string;
@@ -34,24 +33,30 @@ interface Certificate {
 
 export default function CertificatesSection() {
   const { t } = useTranslation();
-  
-  // 2. Ép kiểu cho dữ liệu từ JSON
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [mounted, setMounted] = React.useState(false);
+
   const allCertificates = certData.certificates as Certificate[];
-  
-  const [api, setApi] = React.useState<CarouselApi>()
-  const [current, setCurrent] = React.useState(0)
+
+  // Khắc phục lỗi Hydration mismatch
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
-    if (!api) return
-    setCurrent(api.selectedScrollSnap())
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap())
-    })
-  }, [api])
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  if (!mounted) return <section className="py-24 bg-[#050505] min-h-[700px]" />;
 
   return (
     <section id="certificates" className="py-24 bg-[#050505] px-4 relative overflow-visible">
-      {/* Glow effects */}
+      {/* Hiệu ứng ánh sáng nền */}
       <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-yellow-500/10 blur-[100px] rounded-full pointer-events-none" />
       
       <div className="container mx-auto max-w-6xl">
@@ -68,15 +73,14 @@ export default function CertificatesSection() {
           <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-white">
             {t("certificates.title")} <span className="text-yellow-500">&</span> {t("certificates.subtitle")}
           </h2>
-          <p className="text-zinc-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+          <p className="text-zinc-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed px-4">
             {t("certificates.description")}
           </p>
         </motion.div>
 
         <div className="relative px-2 md:px-16">
-          <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full relative">
+          <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full relative group/carousel">
             <CarouselContent className="-ml-4">
-              {/* 3. Truyền type vào map */}
               {allCertificates.map((cert: Certificate, index: number) => (
                 <CarouselItem key={cert.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 py-4">
                   <motion.div
@@ -86,26 +90,29 @@ export default function CertificatesSection() {
                     className="h-full"
                   >
                     <Card className="h-full flex flex-col bg-zinc-900/40 border-white/5 hover:border-yellow-500/30 transition-all duration-500 group backdrop-blur-md overflow-hidden shadow-2xl">
+                      {/* Ảnh chứng chỉ */}
                       <div className="relative aspect-[16/10] overflow-hidden bg-zinc-800">
                         <Image
                           src={cert.image || `https://s.wordpress.com/mshots/v1/${encodeURIComponent(cert.url || "")}?w=600`}
                           alt={cert.name}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale-[0.5] group-hover:grayscale-0"
-                          unoptimized
+                          unoptimized={!cert.image} // Dùng cho mshots URL
                         />
-                        <div className="absolute top-3 right-3">
-                           <span className="px-2 py-1 bg-white/10 backdrop-blur-md text-white text-[8px] font-bold uppercase rounded border border-white/10">
+                        <div className="absolute top-3 right-3 z-10">
+                           <span className="px-2 py-1 bg-black/60 backdrop-blur-md text-white text-[8px] font-bold uppercase rounded border border-white/10">
                             {t(`certificates.categories.${cert.category}`)}
                           </span>
                         </div>
-                        <div className="absolute bottom-3 left-3">
-                          <span className="px-2 py-1 bg-yellow-500 text-black text-[10px] font-black uppercase rounded">
+                        <div className="absolute bottom-3 left-3 z-10">
+                          <span className="px-2 py-1 bg-yellow-500 text-black text-[10px] font-black uppercase rounded shadow-lg">
                             {cert.organization}
                           </span>
                         </div>
                       </div>
 
+                      {/* Nội dung chi tiết */}
                       <div className="p-6 flex flex-col flex-1">
                         <div className="flex items-start justify-between gap-4 mb-3">
                           <Award className="w-5 h-5 text-yellow-500 shrink-0" />
@@ -114,7 +121,7 @@ export default function CertificatesSection() {
                           </CardTitle>
                         </div>
 
-                        <p className="text-zinc-500 text-xs line-clamp-2 mb-4 leading-relaxed">
+                        <p className="text-zinc-500 text-xs line-clamp-2 mb-4 leading-relaxed min-h-[32px]">
                           {t(`certificates.items.${cert.id}`)}
                         </p>
 
@@ -145,13 +152,15 @@ export default function CertificatesSection() {
               ))}
             </CarouselContent>
             
-            <div className="flex justify-center md:block">
+            {/* Nút điều hướng */}
+            <div className="flex justify-center md:block mt-8 md:mt-0">
                <CarouselPrevious className="static md:absolute translate-y-0 md:-left-12 bg-zinc-900/80 border-white/10 text-white hover:bg-yellow-500 hover:text-black transition-all shadow-xl" />
                <CarouselNext className="static md:absolute translate-y-0 md:-right-12 bg-zinc-900/80 border-white/10 text-white hover:bg-yellow-500 hover:text-black transition-all shadow-xl ml-4 md:ml-0" />
             </div>
           </Carousel>
         </div>
 
+        {/* Chỉ số trang (Dots) */}
         <div className="flex justify-center gap-3 mt-16">
           {allCertificates.map((_, i) => (
             <button
@@ -160,10 +169,11 @@ export default function CertificatesSection() {
               className={`h-1.5 rounded-full transition-all duration-500 ${
                 current === i ? "w-12 bg-yellow-500" : "w-4 bg-zinc-800 hover:bg-zinc-700"
               }`}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

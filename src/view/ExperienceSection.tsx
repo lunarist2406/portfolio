@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { 
   Building2, 
@@ -17,8 +18,16 @@ import experienceData from "@/data/experience.json"
 
 export default function ExperienceSection() {
   const { t } = useTranslation()
+  const [mounted, setMounted] = useState(false)
   const experiences = experienceData.workExperience
   const expPrefix = "experience"
+
+  // Đảm bảo chỉ render sau khi đã mount ở client để tránh lỗi hydration với i18n
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return <section className="py-32 bg-[#030303] min-h-screen" />
 
   return (
     <section id="experience" className="py-32 bg-[#030303] relative overflow-hidden">
@@ -33,6 +42,7 @@ export default function ExperienceSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 mb-6">
             <Briefcase className="w-3 h-3 text-yellow-500" />
@@ -51,12 +61,12 @@ export default function ExperienceSection() {
 
         {/* Experience Cards */}
         <div className="space-y-16">
-          {experiences.map((exp) => (
+          {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.1 }}
               viewport={{ once: true }}
               className="group relative"
             >
@@ -69,14 +79,16 @@ export default function ExperienceSection() {
                       <div className="p-4 bg-yellow-500 rounded-2xl shadow-[0_0_20px_rgba(234,179,8,0.3)]">
                         <Building2 className="w-7 h-7 text-black" />
                       </div>
-                      <a 
-                        href={exp.website} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-full bg-white/5 text-zinc-500 hover:text-yellow-500 hover:bg-yellow-500/10 transition-all"
-                      >
-                        <ArrowUpRight className="w-5 h-5" />
-                      </a>
+                      {exp.website && (
+                        <a 
+                          href={exp.website} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-full bg-white/5 text-zinc-500 hover:text-yellow-500 hover:bg-yellow-500/10 transition-all"
+                        >
+                          <ArrowUpRight className="w-5 h-5" />
+                        </a>
+                      )}
                     </div>
 
                     <h3 className="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-yellow-500 transition-colors">
@@ -106,13 +118,14 @@ export default function ExperienceSection() {
                     </p>
                   </div>
 
-                  <div className="mt-10 relative aspect-[16/9] rounded-xl overflow-hidden group-hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] transition-all">
+                  <div className="mt-10 relative aspect-[16/9] rounded-xl overflow-hidden group-hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] transition-all bg-zinc-800">
                     <Image 
                       src={exp.previewImage} 
                       alt={exp.company}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                      unoptimized
+                      unoptimized={exp.previewImage.startsWith('http')}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-60" />
                   </div>
@@ -130,9 +143,7 @@ export default function ExperienceSection() {
 
                     <div className="space-y-10">
                       {exp.projects.map((project, pIdx) => {
-                        // Xác định projectKey bằng chỉ số nếu JSON không cung cấp id
-                        const projectKey = pIdx;
-                        const resData = t(`${expPrefix}.items.${exp.id}.projects.${projectKey}.responsibilities`, { returnObjects: true });
+                        const resData = t(`${expPrefix}.items.${exp.id}.projects.${pIdx}.responsibilities`, { returnObjects: true });
 
                         return (
                           <div key={pIdx} className="relative pl-6 border-l border-white/10 hover:border-yellow-500/50 transition-colors group/project">
@@ -140,7 +151,7 @@ export default function ExperienceSection() {
                             
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                               <h4 className="text-xl font-bold text-white tracking-tight">
-                                {t(`${expPrefix}.items.${exp.id}.projects.${projectKey}.name`)}
+                                {t(`${expPrefix}.items.${exp.id}.projects.${pIdx}.name`)}
                               </h4>
                               <div className="flex flex-wrap gap-2">
                                 {project.techStack.map(tech => (
@@ -176,7 +187,7 @@ export default function ExperienceSection() {
                       {(() => {
                         const takeaways = t(`${expPrefix}.items.${exp.id}.takeaways`, { returnObjects: true });
                         return Array.isArray(takeaways) ? takeaways.map((item, tIdx) => (
-                          <span key={tIdx} className="px-3 py-1.5 bg-yellow-500/5 text-yellow-500/80 text-[10px] font-bold rounded-lg border border-yellow-500/10">
+                          <span key={tIdx} className="px-3 py-1.5 bg-yellow-500/5 text-yellow-500/80 text-[10px] font-bold rounded-lg border border-yellow-500/10 hover:bg-yellow-500/10 transition-colors">
                             # {item}
                           </span>
                         )) : null;

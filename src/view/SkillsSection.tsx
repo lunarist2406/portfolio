@@ -2,7 +2,7 @@
 
 import { Monitor, Server, Palette, Award, ExternalLink, ChevronRight, LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Thêm useEffect
 import { useTranslation } from "react-i18next";
 import skillsData from "@/data/portfolio.json"; 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
@@ -33,10 +33,14 @@ interface Certificate {
 export default function SkillsSection() {
   const { t } = useTranslation();
   const [activeExpertise, setActiveExpertise] = useState("frontend");
-  
-  // 1. Ép kiểu dữ liệu dịch (Xử lý lỗi any tại dòng 18)
+  const [mounted, setMounted] = useState(false); // Xử lý Hydration
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Ép kiểu dữ liệu dịch
   const categories = t('about.expertiseCategories', { returnObjects: true }) as Record<string, CategoryTranslation>;
-  
   const expertiseDetailsData: Record<string, ExpertiseDetail> = skillsData.expertiseDetails;
   
   const expertiseList: ExpertiseItem[] = Object.keys(categories).map(key => ({
@@ -46,6 +50,9 @@ export default function SkillsSection() {
   }));
 
   const iconMap: Record<string, LucideIcon> = { Monitor, Server, Palette };
+
+  // Tránh Hydration Mismatch bằng cách không render nội dung động trên Server
+  if (!mounted) return <section className="py-24 bg-black" />;
 
   return (
     <section id="skills" className="py-16 md:py-24 bg-black text-white px-4 overflow-hidden">
@@ -141,7 +148,6 @@ export default function SkillsSection() {
                     </Badge>
                   </div>
 
-                  {/* Sửa lỗi dấu ngoặc kép tại dòng 127 */}
                   <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-8 md:mb-10 italic font-medium">
                     &ldquo;{categories[activeExpertise]?.desc}&rdquo;
                   </p>
@@ -205,7 +211,6 @@ export default function SkillsSection() {
   );
 }
 
-// Sửa lỗi any trong Props và các tham số map (Dòng 194, 206)
 interface CertificatesListProps {
   expertiseDetails: Record<string, ExpertiseDetail>;
   activeExpertise: string;
@@ -238,6 +243,7 @@ function CertificatesList({ expertiseDetails, activeExpertise }: CertificatesLis
                   src={cert.image || `https://s.wordpress.com/mshots/v1/${encodeURIComponent(cert.link)}?w=400`} 
                   alt={cert.title} 
                   fill 
+                  sizes="(max-width: 768px) 80px, 96px" // Thêm sizes để tối ưu hiệu năng
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   unoptimized
                 />
